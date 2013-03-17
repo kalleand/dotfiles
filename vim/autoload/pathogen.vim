@@ -1,0 +1,1 @@
+/home/kaan/dotfiles/vim-pathogen/autoload/pathogen.vim
