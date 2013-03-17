@@ -1,0 +1,13 @@
+*.toc
+*.aux
+*.gz
+*.a
+*.out
+*.exe
+*.zip
+*.swp
+*.class
+*~
+.metadata
+.project
+.cproject

@@ -1,0 +1,12 @@
+[user]
+	name = Karl Johan Andreasson
+	email = kalleand@kth.se
+[core]
+	excludesfile = /home/kalle/.gitignore_global
+	editor = vim
+[color]
+	ui = true
+[alias]
+	lol = log --oneline --graph --decorate
+[credential]
+	helper = cache --timeout=3600
