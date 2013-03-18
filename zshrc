@@ -52,6 +52,7 @@ alias f="find . |grep "
 alias p="ps aux |grep "
 alias o="gnome-open "
 
+. /usr/share/autojump/autojump.sh
 
 #autoload -U compinit; compinit
 
