@@ -4,3 +4,6 @@
 [submodule "nerdtree"]
 	path = nerdtree
 	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vim-powerline"]
+	path = vim-powerline
+	url = git@github.com:Lokaltog/vim-powerline.git
