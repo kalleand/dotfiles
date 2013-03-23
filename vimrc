@@ -2,7 +2,7 @@ call pathogen#infect()
 set nocompatible
 filetype plugin indent on
 syntax enable
-set background=light
+set background=dark
 set laststatus=2 " Shows powerline.
 set encoding=utf-8
 set t_Co=16 " CRUCIAL for solarized to look good with tmux.
@@ -60,6 +60,10 @@ nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
 nnoremap <C-u> gUiw
 inoremap <C-u> <esc>gUiw
 
+"Bind control-c to escape
+inoremap <C-c> <esc>
+vnoremap <C-c> <esc>
+
 "Split line
 nnoremap S i<cr><esc><right>
 nnoremap vv ^vg_
@@ -89,4 +93,5 @@ if argc()
 endif
 
 let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme='solarized16'
+" let g:Powerline_colorscheme='solarized16'
+let g:Powerline_colorscheme='zenburn'

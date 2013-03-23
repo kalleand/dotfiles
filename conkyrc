@@ -8,7 +8,7 @@ background yes
 double_buffer yes
 
 # fiddle with window
-use_spacer yes
+use_spacer right
 use_xft yes
 
 # Update interval in seconds
@@ -28,9 +28,6 @@ uppercase no # set to yes if you want all text to be in uppercase
 
 # Stippled borders?
 stippled_borders 8
-
-# border margins
-border_margin 4
 
 # border width
 border_width 1
