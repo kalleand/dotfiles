@@ -10,3 +10,5 @@
 	lol = log --oneline --graph --decorate
 [credential]
 	helper = cache --timeout=3600
+[merge]
+	tool = meld
