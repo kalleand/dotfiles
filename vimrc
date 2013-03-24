@@ -5,7 +5,7 @@ syntax enable
 set background=dark
 set laststatus=2 " Shows powerline.
 set encoding=utf-8
-set t_Co=16 " CRUCIAL for solarized to look good with tmux.
+set t_Co=256 " CRUCIAL for solarized to look good with tmux.
 
 set noswapfile
 set ts=4 sts=4 sw=4
@@ -42,9 +42,9 @@ nnoremap <Space> zazz
 vnoremap <Space> zazz
 nnoremap <leader>o zRzz
 nnoremap <leader>c zMzz
-set foldmethod=indent
+set foldmethod=syntax
 " Folding look.
-highlight Folded ctermfg=yellow ctermbg=black
+"highlight Folded ctermfg=yellow ctermbg=black
 
 " Keeps search matches centered.
 nnoremap n nzzzv
