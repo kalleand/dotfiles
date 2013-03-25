@@ -95,3 +95,5 @@ endif
 let g:Powerline_symbols = 'fancy'
 " let g:Powerline_colorscheme='solarized16'
 let g:Powerline_colorscheme='zenburn'
+
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
