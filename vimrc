@@ -6,6 +6,7 @@ set background=dark
 set laststatus=2 " Shows powerline.
 set encoding=utf-8
 set t_Co=256 " CRUCIAL for solarized to look good with tmux.
+colorscheme zenburn
 
 set noswapfile
 set ts=4 sts=4 sw=4
@@ -63,6 +64,14 @@ inoremap <C-u> <esc>gUiw
 "Bind control-c to escape
 inoremap <C-c> <esc>
 vnoremap <C-c> <esc>
+
+" Terminal-like behaviour on C-a and C-e
+nnoremap <C-a> <Home>
+inoremap <C-a> <Home>
+vnoremap <C-a> <Home>
+nnoremap <C-e> <End>
+inoremap <C-e> <End>
+vnoremap <C-e> <End>
 
 "Split line
 nnoremap S i<cr><esc><right>

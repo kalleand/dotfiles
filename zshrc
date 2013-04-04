@@ -57,3 +57,12 @@ alias o="gnome-open "
 #autoload -U compinit; compinit
 
 [ -n "$TMUX" ] && export TERM=screen-256color
+
+# To get steam running on a debian where clib 2.15 is not installed this is necessary.
+# Place the compiled clib2.15 in this library to avoid other conflicts. This way only steam
+# uses this version of clib.
+STEAMLIBS=${HOME}/other/steam-lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${STEAMLIBS}
+
+export STEAMLIBS
+export LD_LIBRARY_PATH 
