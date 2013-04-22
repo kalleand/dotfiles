@@ -82,6 +82,7 @@ ${offset 240}${color slate grey}MEM:  ${color } $memperc% $mem/$memmax
 ${offset 240}${membar 3,100}
 #${offset 240}${color slate grey}SWAP: ${color }$swapperc% $swap/$swapmax
 #${offset 240}${swapbar 3,100}
+
 ${offset 240}${color slate grey}ROOT:    ${color }${fs_free /}/${fs_size /}
 ${offset 240}${fs_bar 3,100 /}
 ${offset 240}${color slate grey}HOME:  ${color }${fs_free /home}/${fs_size /home}

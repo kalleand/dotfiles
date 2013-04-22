@@ -75,6 +75,8 @@ vnoremap <C-e> <End>
 
 "Split line
 nnoremap S i<cr><esc><right>
+
+" Same as V but go to end of line.
 nnoremap vv ^vg_
 
 " Get normal behaviour of arrow keys when using tmux.
@@ -106,3 +108,4 @@ let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme='zenburn'
 
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_mode_map = { 'mode': 'passive'}

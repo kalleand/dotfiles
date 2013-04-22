@@ -44,7 +44,7 @@ hi Number               color: #94BFF3;
 hi Object               color: maroon;
 hi Preview              color: gray;
 hi Question             color: #9ECE9E; background: #3F3F3F; font-weight: bold;
-hi Search               font-size: inherit; padding: 0; color: #385F38; background-color: #F8F893; padding: 0;
+" hi Search               font-size: inherit; padding: 0; color: #385F38; background-color: #F8F893; padding: 0;
 " hi StatusLine             color: #ACBC90; background: #1E2320;
 " hi StatusLineBroken           color: #CC9393; background: #1E2320;
 " hi StatusLineSecure           color: #F0DFAF; background: #1E2320;
