@@ -21,8 +21,16 @@ set list
 set listchars=tab:>\ 
 set hlsearch
 set autoindent
+set pastetoggle=<F3>
 set title " Changes title to the buffer open.
 
+inoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+
+nnoremap å [
+nnoremap ä ]
+nnoremap ö :
 
 " Indenting made easier!
 " This keeps the indented area selected.
@@ -38,7 +46,7 @@ vnoremap <S-Tab> <gv
 noremap <leader><space> :set hls!<CR>
 
 " Folding
-set foldlevelstart=0
+set foldlevelstart=1
 nnoremap <Space> zazz
 vnoremap <Space> zazz
 nnoremap <leader>o zRzz
@@ -57,9 +65,9 @@ nnoremap <leader>m %
 " Remove trailing spaces.
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
 
-"Change case
-nnoremap <C-u> gUiw
-inoremap <C-u> <esc>gUiw
+" Faster moving.
+nnoremap <C-j> <C-d>
+nnoremap <C-k> <C-u>
 
 "Bind control-c to escape
 inoremap <C-c> <esc>
@@ -72,6 +80,7 @@ vnoremap <C-a> <Home>
 nnoremap <C-e> <End>
 inoremap <C-e> <End>
 vnoremap <C-e> <End>
+
 
 "Split line
 nnoremap S i<cr><esc><right>
@@ -107,5 +116,6 @@ let g:Powerline_symbols = 'fancy'
 " let g:Powerline_colorscheme='solarized16'
 let g:Powerline_colorscheme='zenburn'
 
+let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_mode_map = { 'mode': 'passive'}
