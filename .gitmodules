@@ -25,3 +25,6 @@
 [submodule "snipmate-snippets"]
 	path = snipmate-snippets
 	url = https://github.com/honza/snipmate-snippets.git
+[submodule "nerdcommenter"]
+	path = nerdcommenter
+	url = git@github.com:scrooloose/nerdcommenter.git

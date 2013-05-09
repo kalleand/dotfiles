@@ -3,9 +3,9 @@ set nocompatible
 filetype plugin indent on
 syntax enable
 set background=dark
-set laststatus=2 " Shows powerline.
+set laststatus=2
 set encoding=utf-8
-set t_Co=256 " CRUCIAL for solarized to look good with tmux.
+set t_Co=256
 colorscheme zenburn
 
 set noswapfile
@@ -23,24 +23,40 @@ set hlsearch
 set autoindent
 set pastetoggle=<F3>
 set title " Changes title to the buffer open.
+set textwidth=80 " breaks after 80'th column
+set showbreak=…
+
+set showmode
+set statusline=%<\ %{mode()}\ \|\ %F%=\ %l:%c\ \|\ %p%%\ \|\ %{&filetype}\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ 
 
 inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 
+" Try to emulate english keyboard layout.
+nnoremap § ^
+vnoremap $ ^
+nnoremap ¤ $
+vnoremap ¤ $
 nnoremap å [
 nnoremap ä ]
+vnoremap å [
+vnoremap ä ]
+nnoremap Å {
+nnoremap Ä }
+vnoremap Å {
+vnoremap Ä }
 nnoremap ö :
+vnoremap ö :
+
+" When sudo is needed
+command W w !sudo cat % > /dev/null
 
 " Indenting made easier!
-" This keeps the indented area selected.
-vnoremap > >gv
-vnoremap < <gv
-" Use tab for indenting when not in insert mode.
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+vnoremap <Tab> >
+vnoremap <S-Tab> <
 
 " Removes the highlighting after a seach.
 noremap <leader><space> :set hls!<CR>
@@ -50,7 +66,7 @@ set foldlevelstart=1
 nnoremap <Space> zazz
 vnoremap <Space> zazz
 nnoremap <leader>o zRzz
-nnoremap <leader>c zMzz
+nnoremap <leader>O zMzz
 set foldmethod=syntax
 " Folding look.
 "highlight Folded ctermfg=yellow ctermbg=black
@@ -69,21 +85,16 @@ nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
 
-"Bind control-c to escape
-inoremap <C-c> <esc>
-vnoremap <C-c> <esc>
-
 " Terminal-like behaviour on C-a and C-e
 nnoremap <C-a> <Home>
 inoremap <C-a> <Home>
 vnoremap <C-a> <Home>
 nnoremap <C-e> <End>
 inoremap <C-e> <End>
-vnoremap <C-e> <End>
-
+vnoremap <C-e> <End> 
 
 "Split line
-nnoremap S i<cr><esc><right>
+nnoremap S i<cr><esc>
 
 " Same as V but go to end of line.
 nnoremap vv ^vg_
@@ -112,9 +123,9 @@ if argc()
     au BufWinEnter * silent loadview
 endif
 
-let g:Powerline_symbols = 'fancy'
-" let g:Powerline_colorscheme='solarized16'
-let g:Powerline_colorscheme='zenburn'
+"let g:Powerline_symbols = 'fancy'
+"let g:Powerline_colorscheme='solarized16'
+"let g:Powerline_colorscheme='zenburn'
 
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
