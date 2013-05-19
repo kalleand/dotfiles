@@ -8,6 +8,7 @@ set encoding=utf-8
 set t_Co=256
 colorscheme zenburn
 
+set nrformats=
 set noswapfile
 set ts=4 sts=4 sw=4
 set number
@@ -88,12 +89,12 @@ nnoremap <leader>n :tabnew<cr>
 
 
 " Terminal-like behaviour on C-a and C-e
-nnoremap <C-a> <Home>
-inoremap <C-a> <Home>
-vnoremap <C-a> <Home>
-nnoremap <C-e> <End>
-inoremap <C-e> <End>
-vnoremap <C-e> <End> 
+"nnoremap <C-a> <Home>
+"inoremap <C-a> <Home>
+"vnoremap <C-a> <Home>
+"nnoremap <C-e> <End>
+"inoremap <C-e> <End>
+"vnoremap <C-e> <End> 
 
 "Split line
 nnoremap <leader>s i<cr><esc>
