@@ -25,6 +25,8 @@ set pastetoggle=<F3>
 set title " Changes title to the buffer open.
 set textwidth=80 " breaks after 80'th column
 set showbreak=…
+set wildmenu
+set wildmode=full
 
 set showmode
 set statusline=%<\ %{mode()}\ \|\ %F%=\ %l:%c\ \|\ %p%%\ \|\ %{&filetype}\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ 
@@ -34,10 +36,6 @@ vnoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 
 " Try to emulate english keyboard layout.
-nnoremap § ^
-vnoremap $ ^
-nnoremap ¤ $
-vnoremap ¤ $
 nnoremap å [
 nnoremap ä ]
 vnoremap å [
@@ -48,9 +46,6 @@ vnoremap Å {
 vnoremap Ä }
 nnoremap ö :
 vnoremap ö :
-
-" When sudo is needed
-command W w !sudo cat % > /dev/null
 
 " Indenting made easier!
 nnoremap <Tab> >>
@@ -85,6 +80,13 @@ nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
 
+" tabs
+nnoremap <leader>t :tabnext<cr>
+nnoremap <leader>l :tablast<cr>
+nnoremap <leader>f :tabfirst<cr>
+nnoremap <leader>n :tabnew<cr>
+
+
 " Terminal-like behaviour on C-a and C-e
 nnoremap <C-a> <Home>
 inoremap <C-a> <Home>
@@ -94,7 +96,7 @@ inoremap <C-e> <End>
 vnoremap <C-e> <End> 
 
 "Split line
-nnoremap S i<cr><esc>
+nnoremap <leader>s i<cr><esc>
 
 " Same as V but go to end of line.
 nnoremap vv ^vg_

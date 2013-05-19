@@ -12,3 +12,5 @@
 	helper = cache --timeout=3600
 [merge]
 	tool = meld
+[push]
+	default = current
