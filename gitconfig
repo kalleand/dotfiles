@@ -2,7 +2,7 @@
 	name = Karl Johan Andreasson
 	email = kalleand@kth.se
 [core]
-	excludesfile = /home/kalle/.gitignore_global
+	excludesfile = /home/kaan/.gitignore_global
 	editor = vim
 [color]
 	ui = true

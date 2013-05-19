@@ -32,75 +32,64 @@ set wildmode=full
 set showmode
 set statusline=%<\ %{mode()}\ \|\ %F%=\ %l:%c\ \|\ %p%%\ \|\ %{&filetype}\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ 
 
-inoremap <F1> <ESC>
-vnoremap <F1> <ESC>
-nnoremap <F1> <ESC>
+imap <F1> <ESC>
+vmap <F1> <ESC>
+nmap <F1> <ESC>
 
 " Try to emulate english keyboard layout.
-nnoremap å [
-nnoremap ä ]
-vnoremap å [
-vnoremap ä ]
-nnoremap Å {
-nnoremap Ä }
-vnoremap Å {
-vnoremap Ä }
-nnoremap ö :
-vnoremap ö :
+nmap å [
+nmap ä ]
+vmap å [
+vmap ä ]
+nmap Å {
+nmap Ä }
+vmap Å {
+vmap Ä }
+nmap ö :
+vmap ö :
 
-" Indenting made easier!
-nnoremap <Tab> >>
-nnoremap <S-Tab> <<
-vnoremap <Tab> >
-vnoremap <S-Tab> <
+" Commandline history.
+cmap <C-p> <Up>
+cmap <C-d> <Down>
 
 " Removes the highlighting after a seach.
-noremap <leader><space> :set hls!<CR>
+map <leader><space> :set hls!<CR>
 
 " Folding
 set foldlevelstart=1
-nnoremap <Space> zazz
-vnoremap <Space> zazz
-nnoremap <leader>o zRzz
-nnoremap <leader>O zMzz
+nmap <Space> zazz
+vmap <Space> zazz
+nmap <leader>o zRzz
+nmap <leader>O zMzz
 set foldmethod=syntax
 " Folding look.
 "highlight Folded ctermfg=yellow ctermbg=black
 
 " Keeps search matches centered.
-nnoremap n nzzzv
-nnoremap N Nzzzv
+nmap n nzzzv
+nmap N Nzzzv
 
 " Go to matching bracket.
-nnoremap <leader>m %
+nmap <leader>m %
 
 " Remove trailing spaces.
-nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
+nmap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
 
 " Faster moving.
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
+nmap <C-j> <C-d>
+nmap <C-k> <C-u>
 
 " tabs
-nnoremap <leader>t :tabnext<cr>
-nnoremap <leader>l :tablast<cr>
-nnoremap <leader>f :tabfirst<cr>
-nnoremap <leader>n :tabnew<cr>
-
-
-" Terminal-like behaviour on C-a and C-e
-"nnoremap <C-a> <Home>
-"inoremap <C-a> <Home>
-"vnoremap <C-a> <Home>
-"nnoremap <C-e> <End>
-"inoremap <C-e> <End>
-"vnoremap <C-e> <End> 
+nmap <leader>t :tabnext<cr>
+nmap <leader>l :tablast<cr>
+nmap <leader>f :tabfirst<cr>
+nmap <leader>n :tabnew<cr>
 
 "Split line
-nnoremap <leader>s i<cr><esc>
+nmap <leader>s i<cr><esc>
 
 " Same as V but go to end of line.
-nnoremap vv ^vg_
+nmap vv ^vg_
 
 " Get normal behaviour of arrow keys when using tmux.
 if &term =~ '^screen'
@@ -111,24 +100,20 @@ if &term =~ '^screen'
 endif
 
 " Nerdtree
-nnoremap <C-n> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 " Close Nerdtree if it is the only one open.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Open Nerdtree automatically if no file was specified.
 autocmd vimenter * if !argc() | NERDTree | endif
 
 " Taglist
-nnoremap <C-t> :TlistToggle<CR>
+nmap <C-t> :TlistToggle<CR>
 let Tlist_Inc_Winwidth=0
 
 au BufWinLeave * mkview
 if argc()
     au BufWinEnter * silent loadview
 endif
-
-"let g:Powerline_symbols = 'fancy'
-"let g:Powerline_colorscheme='solarized16'
-"let g:Powerline_colorscheme='zenburn'
 
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'

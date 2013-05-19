@@ -7,7 +7,7 @@
 *.zip
 *.swp
 *.class
-*~
 .metadata
 .project
 .cproject
+tags
