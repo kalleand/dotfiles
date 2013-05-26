@@ -20,6 +20,7 @@ let maplocalleader = "\\"
 
 set list
 set listchars=tab:>\ 
+set hidden
 set hlsearch
 set autoindent
 set pastetoggle=<F3>
@@ -75,12 +76,8 @@ nmap <leader>m %
 " Remove trailing spaces.
 nmap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
 
-" Faster moving.
-nmap <C-j> <C-d>
-nmap <C-k> <C-u>
-
 " tabs
-nmap <leader>t :tabnext<cr>
+"nmap <leader>t :tabnext<cr> " use gt / gT instead.
 nmap <leader>l :tablast<cr>
 nmap <leader>f :tabfirst<cr>
 nmap <leader>n :tabnew<cr>
@@ -88,32 +85,29 @@ nmap <leader>n :tabnew<cr>
 "Split line
 nmap <leader>s i<cr><esc>
 
-" Same as V but go to end of line.
+" Visual mode of entire line.
 nmap vv ^vg_
-
-" Get normal behaviour of arrow keys when using tmux.
-if &term =~ '^screen'
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-endif
 
 " Nerdtree
 nmap <C-n> :NERDTreeToggle<CR>
 " Close Nerdtree if it is the only one open.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Open Nerdtree automatically if no file was specified.
-autocmd vimenter * if !argc() | NERDTree | endif
+autocmd VimEnter * if !argc() | NERDTree | endif
 
 " Taglist
 nmap <C-t> :TlistToggle<CR>
 let Tlist_Inc_Winwidth=0
 
-au BufWinLeave * mkview
-if argc()
-    au BufWinEnter * silent loadview
-endif
+
+au BufWritePost,BufLeave,WinLeave ?* mkview
+au BufWinEnter ?* silent! loadview
+"autocmd BufWinEnter * if argc() | silent! loadview | endif
+"autocmd BufWinLeave * if argc() | mkview | endif
+"if argc()
+"    au WinLeave * mkview
+"    au WinEnter * silent loadview
+"endif
 
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
