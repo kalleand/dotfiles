@@ -14,15 +14,18 @@ set ts=4 sts=4 sw=4
 set number
 set mouse=a
 set expandtab
+set matchpairs+=<:>
 
 let mapleader = ","
 let maplocalleader = "\\"
 
+set history=100
 set list
 set listchars=tab:>\ 
 set hidden
 set hlsearch
 set autoindent
+set smartindent
 set pastetoggle=<F3>
 set title " Changes title to the buffer open.
 set textwidth=80 " breaks after 80'th column
@@ -38,14 +41,6 @@ vmap <F1> <ESC>
 nmap <F1> <ESC>
 
 " Try to emulate english keyboard layout.
-nmap å [
-nmap ä ]
-vmap å [
-vmap ä ]
-nmap Å {
-nmap Ä }
-vmap Å {
-vmap Ä }
 nmap ö :
 vmap ö :
 
