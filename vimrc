@@ -34,7 +34,12 @@ set wildmenu
 set wildmode=full
 
 set showmode
-set statusline=%<\ %{mode()}\ \|\ %F%=\ %l:%c\ \|\ %p%%\ \|\ %{&filetype}\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ 
+set statusline=%<\ %{mode()}\ 
+set statusline+=\|\ %F%=\ %l:%c\ 
+set statusline+=\|\ %p%%\ 
+set statusline+=\|\ %{&filetype}\ 
+set statusline+=\|\ %{&fileformat}\ 
+set statusline+=\|\ %{&fileencoding}\ 
 
 imap <F1> <ESC>
 vmap <F1> <ESC>
