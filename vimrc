@@ -32,6 +32,8 @@ set textwidth=80 " breaks after 80'th column
 set showbreak=…
 set wildmenu
 set wildmode=full
+set spell
+set smartcase
 
 set showmode
 set statusline=%<\ %{mode()}\ 
@@ -112,3 +114,8 @@ au BufWinEnter ?* silent! loadview
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_mode_map = { 'mode': 'passive'}
+
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
