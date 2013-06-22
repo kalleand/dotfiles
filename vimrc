@@ -6,7 +6,8 @@ set background=dark
 set laststatus=2
 set encoding=utf-8
 set t_Co=256
-colorscheme zenburn
+"colorscheme zenburn
+colorscheme luna
 
 set nrformats=
 set noswapfile
@@ -21,7 +22,7 @@ let maplocalleader = "\\"
 
 set history=100
 set list
-set listchars=tab:>\ 
+set listchars=tab:>\
 set hidden
 set hlsearch
 set autoindent
@@ -36,30 +37,32 @@ set spell
 set smartcase
 
 set showmode
-set statusline=%<\ %{mode()}\ 
-set statusline+=\|\ %F%=\ %l:%c\ 
-set statusline+=\|\ %p%%\ 
-set statusline+=\|\ %{&filetype}\ 
-set statusline+=\|\ %{&fileformat}\ 
-set statusline+=\|\ %{&fileencoding}\ 
+set statusline=%<\ %{mode()}\
+set statusline+=\|\ %F%=\ %l:%c\
+set statusline+=\|\ %p%%\
+set statusline+=\|\ %{&filetype}\
+set statusline+=\|\ %{&fileformat}\
+set statusline+=\|\ %{&fileencoding}\
 
 imap <F1> <ESC>
 vmap <F1> <ESC>
 nmap <F1> <ESC>
 
-" Try to emulate english keyboard layout.
+" Try to emulate English keyboard layout.
 nmap ö :
 vmap ö :
+nmap Ö :
+vmap Ö :
 
-" Commandline history.
+" Command line history.
 cmap <C-p> <Up>
 cmap <C-d> <Down>
 
-" Removes the highlighting after a seach.
+" Removes the highlighting after a search.
 map <leader><space> :set hls!<CR>
 
 " Folding
-set foldlevelstart=1
+set foldlevelstart=99
 nmap <Space> zazz
 vmap <Space> zazz
 nmap <leader>o zRzz
@@ -113,9 +116,15 @@ au BufWinEnter ?* silent! loadview
 
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
-let g:syntastic_mode_map = { 'mode': 'passive'}
+let g:syntastic_mode_map = { 'mode': 'active'}
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+" YouCompleteMe specific options
+nmap <F5> :YcmForceCompileAndDiagnostics<CR>
+let g:ycm_complete_in_comments = 1
+let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
+let g:ycm_confirm_extra_conf = 0

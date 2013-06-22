@@ -1,4 +1,2 @@
-remove Lock = Caps_Lock
-keysym Caps_Lock = Escape
 keycode 13 = 4 dollar 4 dollar dollar onequarter dollar
 keycode 49 = asciicircum onehalf section onehalf paragraph threequarters paragraph threequarters section onehalf paragraph threequarters
