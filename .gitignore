@@ -1,3 +1,6 @@
 vim/view/*
+vim/bundle/*
 vim/.netrwhist
 vim/bundle/taglist/doc/tags
+vim/spell/*
+vim/colors/*
