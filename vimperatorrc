@@ -63,3 +63,4 @@ hi WarningMsg               color: #CC9393; background: #3F3F3F;
 style -name statusbar chrome://* <<EOM
                     #liberator-statusline { font-family: terminus ! important; }
 EOM
+

@@ -6,8 +6,7 @@ set background=dark
 set laststatus=2
 set encoding=utf-8
 set t_Co=256
-"colorscheme zenburn
-colorscheme luna
+colorscheme zenburn
 
 set nrformats=
 set noswapfile
@@ -20,7 +19,10 @@ set matchpairs+=<:>
 let mapleader = ","
 let maplocalleader = "\\"
 
+set timeoutlen=100
+
 set history=100
+set cursorline
 set list
 set listchars=tab:>\
 set hidden
@@ -33,16 +35,16 @@ set textwidth=80 " breaks after 80'th column
 set showbreak=…
 set wildmenu
 set wildmode=full
-set spell
+set nospell
 set smartcase
 
 set showmode
-set statusline=%<\ %{mode()}\
-set statusline+=\|\ %F%=\ %l:%c\
-set statusline+=\|\ %p%%\
-set statusline+=\|\ %{&filetype}\
-set statusline+=\|\ %{&fileformat}\
-set statusline+=\|\ %{&fileencoding}\
+set statusline=\|%<\ %{mode()}\ \|
+set statusline+=\ %F%=\ %l:%c\ \|
+set statusline+=\ %p%%\ \|
+set statusline+=\ %{&filetype}\ \|
+set statusline+=\ %{&fileformat}\ \|
+set statusline+=\ %{&fileencoding}\ \|
 
 imap <F1> <ESC>
 vmap <F1> <ESC>
@@ -60,6 +62,11 @@ cmap <C-d> <Down>
 
 " Removes the highlighting after a search.
 map <leader><space> :set hls!<CR>
+
+" Clipboard yanking and pasting.
+nmap <leader>y "+y
+vmap <leader>y "+y
+nmap <leader>p "+p
 
 " Folding
 set foldlevelstart=99
@@ -104,27 +111,16 @@ autocmd VimEnter * if !argc() | NERDTree | endif
 nmap <C-t> :TlistToggle<CR>
 let Tlist_Inc_Winwidth=0
 
-
 au BufWritePost,BufLeave,WinLeave ?* mkview
 au BufWinEnter ?* silent! loadview
-"autocmd BufWinEnter * if argc() | silent! loadview | endif
-"autocmd BufWinLeave * if argc() | mkview | endif
-"if argc()
-"    au WinLeave * mkview
-"    au WinEnter * silent loadview
-"endif
 
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
-let g:syntastic_mode_map = { 'mode': 'active'}
-
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
 
 " YouCompleteMe specific options
 nmap <F5> :YcmForceCompileAndDiagnostics<CR>
 let g:ycm_complete_in_comments = 1
 let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
 let g:ycm_confirm_extra_conf = 0
+
+let g:UltiSnipsExpandTrigger="<c-j>"

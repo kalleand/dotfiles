@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="kardan"
+ZSH_THEME="kalleand"
 # ZSH_THEME="blinks"
 
 # Example aliases
@@ -33,9 +33,10 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source /etc/profile.d/autojump.zsh
 
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:
+# export PATH=/usr/bin:/usr/bin/vendor-perl
 
 alias ll='ls -alhF'
 alias la='ls -A'
@@ -47,10 +48,15 @@ alias ga='git add'
 alias ..='cd ..'
 alias ...='cd ../..'
 
+alias j="j 1>/dev/null"
+alias o="mimeopen "
 alias h="history|grep "
 alias f="find . |grep "
 alias p="ps aux |grep "
+alias ranger=/home/kaan/other/ranger/ranger.py --clean
+
 export EDITOR=vim
+export BROWSER=firefox
 
 autoload -U compinit; compinit
 
