@@ -19,7 +19,9 @@ set matchpairs+=<:>
 let mapleader = ","
 let maplocalleader = "\\"
 
-set timeoutlen=100
+" Would like this to be lower. However, easymotion with its
+" <leader><leader><motion> hinders this. (Unless you are really fast!)
+set timeoutlen=500
 
 set history=100
 set cursorline
@@ -31,11 +33,12 @@ set autoindent
 set smartindent
 set pastetoggle=<F3>
 set title " Changes title to the buffer open.
-set textwidth=80 " breaks after 80'th column
+set textwidth=80 " breaks after 80'th column.
+"set colorcolumn=80 " Shows the 80'th column.
 set showbreak=…
 set wildmenu
 set wildmode=full
-set nospell
+"set nospell
 set smartcase
 
 set showmode
@@ -93,6 +96,12 @@ nmap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
 nmap <leader>l :tablast<cr>
 nmap <leader>f :tabfirst<cr>
 nmap <leader>n :tabnew<cr>
+
+" Dont use the arrowkeys
+map <Up> <Nop>
+map <Down> <Nop>
+map <Left> <Nop>
+map <Right> <Nop>
 
 "Split line
 nmap <leader>s i<cr><esc>
