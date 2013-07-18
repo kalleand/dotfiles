@@ -30,7 +30,7 @@ set list " Show special characters.
 set listchars=tab:>\ " Display the tab as "> ".
 set hidden " Allow to move away from dirty buffer.
 set hlsearch " Display the search match.
-set autoindent " Automatically indent when a new line 
+set autoindent " Automatically indent when a new line
 set smartindent " Smart indenting.
 set pastetoggle=<F3> "Toggle paste with <F3>.
 set title " Changes title to the buffer open.
@@ -39,8 +39,9 @@ set textwidth=80 " breaks after 80'th column.
 set showbreak=… " Show breaks by displaying this character first in the line.
 set wildmenu " Use wildmenu.
 set wildmode=full " Show all the possible outcomes.
-"set nospell
+set nospell
 set smartcase " Search using smartcase.
+set viewoptions=cursor,folds
 
 set showmode " Show which mode is currently used.
 set statusline=\|%<\ %{mode()}\ \|
