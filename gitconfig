@@ -1,16 +1,19 @@
 [user]
-	name = Karl Johan Andreasson
-	email = kalleand@kth.se
+    name = Karl Johan Andreasson
+    email = kalleand@kth.se
 [core]
-	excludesfile = /home/kaan/.gitignore_global
-	editor = vim
+    excludesfile = /home/kaan/.gitignore_global
+    editor = vim
 [color]
-	ui = true
+    ui = true
 [alias]
-	lol = log --oneline --graph --decorate
+    lol = log --oneline --graph --decorate
+    ignore = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 >> .gitignore
+    ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+    theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 [credential]
-	helper = cache --timeout=3600
+    helper = cache --timeout=3600
 [merge]
-	tool = meld
+    tool = meld
 [push]
-	default = current
+    default = current
