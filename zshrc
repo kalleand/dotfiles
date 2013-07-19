@@ -60,4 +60,4 @@ export BROWSER=firefox
 
 autoload -U compinit; compinit
 
-if [[ ! -n $TMUX ]] then ((tmux ls | grep -vq attached && tmux at) || tmux) && exit; fi
+if [[ ! -n $TMUX && ! -o login ]] then ((tmux ls | grep -vq attached && tmux at) || tmux) && exit; fi
