@@ -2,7 +2,7 @@
 tint2 &
 volumeicon &
 hsetroot -fill /home/kaan/Images/2.jpg &
-parcellite &
+parcellite -n &
 conky &
 synclient TapButton1=0
 synclient TapButton2=0

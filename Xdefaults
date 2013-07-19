@@ -41,7 +41,7 @@ URxvt*color11: #f0dfaf
 URxvt*color12: #94bff3
 URxvt*color13: #ec93d3
 URxvt*color14: #93e0e3
-URxvt*color15: #ffffff
+URxvt*color15: #f0f0f0
  
 !black
 xterm*color0: #3a3a3a

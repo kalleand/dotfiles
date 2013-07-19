@@ -92,7 +92,7 @@ nmap N Nzzzv
 nmap <leader>m %
 
 " Remove trailing spaces.
-nmap <leader>w :%s/\s\+$//<cr>:let @/=''<cr>
+map <silent> <leader>w :let _s=@/<cr>:%s/\s\+$//e<cr>:let @/=_s<cr>
 
 " tabs
 "nmap <leader>t :tabnext<cr> " use gt / gT instead.
