@@ -54,6 +54,7 @@ alias h="history|grep "
 alias f="find . |grep "
 alias p="ps aux |grep "
 alias ranger=/home/kaan/other/ranger/ranger.py --clean
+alias vimr="vim --remote-silent "
 
 export EDITOR=vim
 export BROWSER=firefox

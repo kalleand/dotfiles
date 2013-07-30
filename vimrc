@@ -8,6 +8,9 @@ set encoding=utf-8
 set t_Co=256
 colorscheme zenburn
 
+" To enable :E to default to Explore.
+command! E Explore
+
 set nrformats= " Makes <C-a> and <C-x> work on numbers as 001.
 set noswapfile " Dont create swapfiles.
 set ts=4 sts=4 sw=4 " One tab is 4 spaces.
@@ -15,6 +18,7 @@ set number " Shows linenumber.
 set mouse=a " Set mouse on always.
 set expandtab " Use tabs instead of spaces.
 set matchpairs+=<:> " Matches inside tags as well.
+set scrolloff=2
 
 " Remap leader and localleader.
 let mapleader = ","
@@ -112,13 +116,6 @@ nmap <leader>s i<cr><esc>
 " Visual mode of entire line.
 nmap vv ^vg_
 
-" Nerdtree
-nmap <C-n> :NERDTreeToggle<CR>
-" Close Nerdtree if it is the only one open.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" Open Nerdtree automatically if no file was specified.
-autocmd VimEnter * if !argc() | NERDTree | endif
-
 " Taglist
 nmap <C-t> :TlistToggle<CR>
 let Tlist_Inc_Winwidth=0
@@ -138,4 +135,6 @@ let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
 let g:ycm_confirm_extra_conf = 0
 
 " Ultisnips options.
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="^^"
+let g:UltiSnipsJumpForwardTrigger="^^"
+
