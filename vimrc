@@ -135,6 +135,5 @@ let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
 let g:ycm_confirm_extra_conf = 0
 
 " Ultisnips options.
-let g:UltiSnipsExpandTrigger="^^"
-let g:UltiSnipsJumpForwardTrigger="^^"
-
+let g:UltiSnipsExpandTrigger=",,"
+let g:UltiSnipsJumpForwardTrigger=",,"
