@@ -18,7 +18,7 @@ set number " Shows linenumber.
 set mouse=a " Set mouse on always.
 set expandtab " Use tabs instead of spaces.
 set matchpairs+=<:> " Matches inside tags as well.
-set scrolloff=2
+set scrolloff=3
 
 " Remap leader and localleader.
 let mapleader = ","
@@ -28,7 +28,7 @@ let maplocalleader = "\\"
 " second. (Makes <Esc>O not display a capital O for 1 second after keypress)
 set timeoutlen=1000 ttimeoutlen=100
 
-set history=100 " Remember 100 moves.
+set history=1000 " Remember 1000 moves.
 set cursorline " Display which line cursor is currently on.
 set list " Show special characters.
 set listchars=tab:>\ " Display the tab as "> ".
@@ -89,8 +89,8 @@ set foldmethod=syntax
 "highlight Folded ctermfg=yellow ctermbg=black
 
 " Keeps search matches centered and unfold the current line.
-nmap n nzzzv
-nmap N Nzzzv
+"nmap n nzzzv
+"nmap N Nzzzv
 
 " Go to matching bracket.
 nmap <leader>m %
@@ -129,10 +129,10 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " YouCompleteMe specific options
-nmap <F5> :YcmForceCompileAndDiagnostics<CR>
-let g:ycm_complete_in_comments = 1
-let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
-let g:ycm_confirm_extra_conf = 0
+"nmap <F5> :YcmForceCompileAndDiagnostics<CR>
+"let g:ycm_complete_in_comments = 1
+"let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
+"let g:ycm_confirm_extra_conf = 0
 
 " Ultisnips options.
 let g:UltiSnipsExpandTrigger=",,"
