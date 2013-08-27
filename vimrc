@@ -1,6 +1,27 @@
-call pathogen#infect()
 set nocompatible
+
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Plugins.
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'taglist.vim'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'slimv.vim'
+
 filetype plugin indent on
+
+NeoBundleCheck
+
 syntax enable
 set background=dark
 set laststatus=2 " Show own statusline with additional information.
