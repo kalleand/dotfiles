@@ -40,6 +40,7 @@ set mouse=a " Set mouse on always.
 set expandtab " Use tabs instead of spaces.
 set matchpairs+=<:> " Matches inside tags as well.
 set scrolloff=3
+set sidescrolloff=5
 
 " Remap leader and localleader.
 let mapleader = ","
