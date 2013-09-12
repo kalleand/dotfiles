@@ -159,3 +159,6 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 " Ultisnips options.
 let g:UltiSnipsExpandTrigger=",,"
 let g:UltiSnipsJumpForwardTrigger=",,"
+
+let g:slimv_repl_split=4
+let g:slimv_ctags="/usr/bin/ctags -a --language-force=lisp *.lisp"
