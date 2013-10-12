@@ -17,6 +17,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'slimv.vim'
+NeoBundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on
 
@@ -143,8 +144,8 @@ nmap <C-t> :TlistToggle<CR>
 let Tlist_Inc_Winwidth=0
 
 " Make views when closing and show view when open file.
-au BufWritePost,BufLeave,WinLeave ?* mkview
-au BufWinEnter ?* silent! loadview
+"au BufWritePost,BufLeave,WinLeave ?* mkview
+"au BufWinEnter ?* silent! loadview
 
 " Syntastic options.
 let g:syntastic_cpp_check_header = 1
@@ -152,13 +153,16 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " YouCompleteMe specific options
 "nmap <F5> :YcmForceCompileAndDiagnostics<CR>
-"let g:ycm_complete_in_comments = 1
-"let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
-"let g:ycm_confirm_extra_conf = 0
+let g:ycm_complete_in_comments = 1
+let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_filetype_blacklist = { 'lisp': 1 }
 
 " Ultisnips options.
+" Why would you mess with <C-J>?
 let g:UltiSnipsExpandTrigger=",,"
 let g:UltiSnipsJumpForwardTrigger=",,"
+let g:UltisnipsJumpBackwardTrigger=",;"
 
-let g:slimv_repl_split=4
+"let g:slimv_repl_split=4
 let g:slimv_ctags="/usr/bin/ctags -a --language-force=lisp *.lisp"

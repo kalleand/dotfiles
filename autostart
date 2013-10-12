@@ -1,4 +1,4 @@
-(sleep 3 && /usr/bin/nm-applet --sm-disable) &
+#(sleep 3 && /usr/bin/nm-applet --sm-disable) &
 tint2 &
 volumeicon &
 hsetroot -fill /home/kaan/Images/2.jpg &

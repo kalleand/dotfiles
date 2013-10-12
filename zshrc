@@ -36,7 +36,7 @@ source $ZSH/oh-my-zsh.sh
 source /etc/profile.d/autojump.zsh
 
 # Customize to your needs...
-# export PATH=/usr/bin:/usr/bin/vendor-perl
+export PATH="$HOME/.rbenv/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
 
 alias ll='ls -alhF'
 alias la='ls -A'
@@ -58,6 +58,9 @@ alias vimr="vim --remote-silent "
 
 export EDITOR=vim
 export BROWSER=firefox
+
+# Ruby shims and autocompletion
+eval "$(rbenv init -)"
 
 autoload -U compinit; compinit
 
