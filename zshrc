@@ -38,6 +38,7 @@ source /etc/profile.d/autojump.zsh
 # Customize to your needs...
 export PATH="$HOME/.rbenv/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
 
+bindkey -v
 alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
