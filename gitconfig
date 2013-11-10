@@ -5,7 +5,7 @@
     excludesfile = /home/kaan/.gitignore_global
     editor = vim
 [color]
-    ui = true
+	ui = true
 [alias]
     lol = log --oneline --graph --decorate
     ignore = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 >> .gitignore
@@ -17,3 +17,5 @@
     tool = vimdiff
 [push]
     default = current
+[help]
+	autocorrect = 1

@@ -54,7 +54,7 @@ set timeoutlen=1000 ttimeoutlen=100
 set history=1000 " Remember 1000 moves.
 set cursorline " Display which line cursor is currently on.
 set list " Show special characters.
-set listchars=tab:>\ " Display the tab as "> ".
+set listchars=tab:>\ ,trail:·" Display the tab as "> ".
 set hidden " Allow to move away from dirty buffer.
 set hlsearch " Display the search match.
 set autoindent " Automatically indent when a new line
