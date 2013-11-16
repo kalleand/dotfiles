@@ -18,6 +18,8 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'slimv.vim'
 NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'Shougo/unite.vim'
 
 filetype plugin indent on
 
@@ -114,6 +116,7 @@ set foldmethod=syntax
 " Keeps search matches centered and unfold the current line.
 "nmap n nzzzv
 "nmap N Nzzzv
+highlight SignColumn ctermbg=black
 
 " Go to matching bracket.
 nmap <leader>m %
