@@ -1,7 +1,7 @@
 #(sleep 3 && /usr/bin/nm-applet --sm-disable) &
 tint2 &
 volumeicon &
-hsetroot -fill /home/kaan/Images/5.jpg &
+hsetroot -tile /home/kaan/Images/6.png &
 parcellite -n &
 #conky &
 synclient TapButton1=0
