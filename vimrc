@@ -20,6 +20,8 @@ NeoBundle 'slimv.vim'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'vim-pandoc/vim-pantondoc'
+NeoBundle 'vim-pandoc/vim-pandoc-syntax'
 
 filetype plugin indent on
 
