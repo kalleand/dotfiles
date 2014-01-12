@@ -17,11 +17,13 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'slimv.vim'
-NeoBundle 'Valloric/YouCompleteMe'
+"NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'vim-pandoc/vim-pantondoc'
 NeoBundle 'vim-pandoc/vim-pandoc-syntax'
+NeoBundle 'tommcdo/vim-exchange'
+NeoBundle 'rking/ag.vim'
 
 filetype plugin indent on
 
@@ -73,8 +75,13 @@ set wildmode=full " Show all the possible outcomes.
 set nospell
 set smartcase " Search using smartcase.
 set viewoptions=cursor,folds
+set nojoinspaces " Only one space after a period when joining lines.
+set hlsearch
+set incsearch
+set splitbelow
+set splitright
 
-set showmode " Show which mode is currently used.
+set showmode " Show which mode is currently used. 
 set statusline=\|%<\ %{mode()}\ \|
 set statusline+=\ %F%=\ %l:%c\ \|
 set statusline+=\ %p%%\ \|
@@ -92,6 +99,9 @@ nmap ö :
 vmap ö :
 nmap Ö :
 vmap Ö :
+
+" We do not want Ex mode
+nmap Q <Nop>
 
 " Command line history.
 cmap <C-p> <Up>
@@ -158,16 +168,16 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " YouCompleteMe specific options
 "nmap <F5> :YcmForceCompileAndDiagnostics<CR>
-let g:ycm_complete_in_comments = 1
-let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_filetype_blacklist = { 'lisp': 1 }
+"let g:ycm_complete_in_comments = 1
+"let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_filetype_blacklist = { 'lisp': 1 }
 
 " Ultisnips options.
 " Why would you mess with <C-J>?
-let g:UltiSnipsExpandTrigger=",,"
-let g:UltiSnipsJumpForwardTrigger=",,"
-let g:UltisnipsJumpBackwardTrigger=",;"
+let g:UltiSnipsExpandTrigger="ää"
+let g:UltiSnipsJumpForwardTrigger="ää"
+let g:UltisnipsJumpBackwardTrigger="ää"
 
 "let g:slimv_repl_split=4
 let g:slimv_ctags="/usr/bin/ctags -a --language-force=lisp *.lisp"
