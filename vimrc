@@ -16,14 +16,16 @@ NeoBundle 'taglist.vim'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
 NeoBundle 'slimv.vim'
-"NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'vim-pandoc/vim-pantondoc'
 NeoBundle 'vim-pandoc/vim-pandoc-syntax'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 
 filetype plugin indent on
 
