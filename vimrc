@@ -26,6 +26,8 @@ NeoBundle 'vim-pandoc/vim-pandoc-syntax'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'itchyny/calendar.vim'
 
 filetype plugin indent on
 
@@ -117,6 +119,9 @@ nmap <leader>y "+y
 vmap <leader>y "+y
 nmap <leader>p "+p
 
+" Clear entire line but dont remove it (normal cl is quivalent of s)
+nnoremap cl 0"_d$
+
 " Folding (zz == center line in buffer).
 set foldlevelstart=99
 nmap <Space> zazz
@@ -175,11 +180,19 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 "let g:ycm_confirm_extra_conf = 0
 "let g:ycm_filetype_blacklist = { 'lisp': 1 }
 
-" Ultisnips options.
-" Why would you mess with <C-J>?
+" Ultisnips options. (Why would you mess with <C-J>?)
 let g:UltiSnipsExpandTrigger="ää"
 let g:UltiSnipsJumpForwardTrigger="ää"
 let g:UltisnipsJumpBackwardTrigger="ää"
 
 "let g:slimv_repl_split=4
 let g:slimv_ctags="/usr/bin/ctags -a --language-force=lisp *.lisp"
+
+" Calendar settings.
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+
+" LatexBox
+"let g:LatexBox_latexmk_async = 1
+let g:LatexBox_latexmk_preview_continuously = 1
+let g:LatexBox_viewer = "mimeopen"

@@ -1,3 +1,4 @@
+source $HOME/.bashrc
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -36,7 +37,7 @@ source $ZSH/oh-my-zsh.sh
 source /etc/profile.d/autojump.zsh
 
 # Customize to your needs...
-export PATH="$HOME/.rbenv/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
+export PATH="$HOME/other/android-studio/bin:/home/kaan/other/android-ndk-r9c:$HOME/.rbenv/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
 
 bindkey -v
 alias ll='ls -alhF'
