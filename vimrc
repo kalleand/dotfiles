@@ -13,16 +13,18 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'taglist.vim'
-NeoBundle 'SirVer/ultisnips'
+"NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'slimv.vim'
+NeoBundle 'kovisoft/slimv'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'vim-pandoc/vim-pantondoc'
-NeoBundle 'vim-pandoc/vim-pandoc-syntax'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
@@ -173,17 +175,10 @@ let Tlist_Inc_Winwidth=0
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
-" YouCompleteMe specific options
-"nmap <F5> :YcmForceCompileAndDiagnostics<CR>
-"let g:ycm_complete_in_comments = 1
-"let g:ycm_global_ycm_extra_conf = '/home/kaan/.ycm_extra-conf.py'
-"let g:ycm_confirm_extra_conf = 0
-"let g:ycm_filetype_blacklist = { 'lisp': 1 }
-
 " Ultisnips options. (Why would you mess with <C-J>?)
-let g:UltiSnipsExpandTrigger="ää"
-let g:UltiSnipsJumpForwardTrigger="ää"
-let g:UltisnipsJumpBackwardTrigger="ää"
+"let g:UltiSnipsExpandTrigger="ää"
+"let g:UltiSnipsJumpForwardTrigger="ää"
+"let g:UltisnipsJumpBackwardTrigger="ää"
 
 "let g:slimv_repl_split=4
 let g:slimv_ctags="/usr/bin/ctags -a --language-force=lisp *.lisp"
@@ -196,3 +191,17 @@ let g:calendar_google_task = 1
 "let g:LatexBox_latexmk_async = 1
 let g:LatexBox_latexmk_preview_continuously = 1
 let g:LatexBox_viewer = "mimeopen"
+" Automatically build the document.
+"au BufWinEnter *.tex silent! Latexmk
+
+" Prevent lagg from gitgutter
+let g:gitgutter_realtime = 0
+
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+
+" Neosnippet
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_or_jump)
+

@@ -1,3 +1,5 @@
+set gui=nonavigation
+set guioptions=Cs
 hi Bell                 border: 0 none; background-color: black;
 hi Boolean              color: #CC9393;
 hi CmdLine              color: #DCDCCD; font-family: terminus; padding: 1px;
@@ -59,6 +61,7 @@ hi Title                color: #ACBC90; background: #3F3F3F; font-weight: bold;
 hi URL                  text-decoration: none; color: #9ECE9E; background: inherit;
 hi URL:hover                text-decoration: underline; cursor: pointer;
 hi WarningMsg               color: #CC9393; background: #3F3F3F;
+hi ScrollBar            color: #000f;
 
 style -name statusbar chrome://* <<EOM
                     #liberator-statusline { font-family: terminus ! important; }

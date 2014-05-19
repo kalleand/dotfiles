@@ -37,7 +37,7 @@ source $ZSH/oh-my-zsh.sh
 source /etc/profile.d/autojump.zsh
 
 # Customize to your needs...
-export PATH="$HOME/other/android-studio/bin:/home/kaan/other/android-ndk-r9c:$HOME/.rbenv/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
+export PATH="$HOME/other/git-hooks:$HOME/other/android-studio/bin:/home/kaan/other/android-ndk-r9c:$HOME/.rbenv/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
 
 bindkey -v
 alias ll='ls -alhF'
@@ -57,6 +57,9 @@ alias f="find . |grep "
 alias p="ps aux |grep "
 alias ranger=/home/kaan/other/ranger/ranger.py --clean
 alias vimr="vim --remote-silent "
+
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.(o|out|pdf|jpg|so|png|class|toc|log|)'
 
 export EDITOR=vim
 export BROWSER=firefox
