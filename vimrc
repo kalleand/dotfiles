@@ -22,6 +22,11 @@ NeoBundle 'kovisoft/slimv'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+        \   'build' : {
+        \       'unix' : 'make -f make_unix.mak',
+        \   },
+        \}
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -30,6 +35,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'itchyny/calendar.vim'
+NeoBundle 'tomasr/molokai'
 
 filetype plugin indent on
 
@@ -40,7 +46,10 @@ set background=dark
 set laststatus=2 " Show own statusline with additional information.
 set encoding=utf-8
 set t_Co=256
-colorscheme zenburn
+
+colorscheme molokai
+let g:molokai_original = 1
+"let g:rehash256 = 1
 
 " To enable :E to default to Explore.
 command! E Explore
