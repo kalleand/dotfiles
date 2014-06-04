@@ -48,7 +48,7 @@ set encoding=utf-8
 set t_Co=256
 
 colorscheme molokai
-let g:molokai_original = 1
+"let g:molokai_original = 1
 "let g:rehash256 = 1
 
 " To enable :E to default to Explore.
@@ -83,15 +83,15 @@ set smartindent " Smart indenting.
 set pastetoggle=<F3> "Toggle paste with <F3>.
 set title " Changes title to the buffer open.
 set textwidth=80 " breaks after 80'th column.
-"set colorcolumn=80 " Shows the 80'th column.
+set colorcolumn=80 " Shows the 80'th column.
 set showbreak=… " Show breaks by displaying this character first in the line.
 set wildmenu " Use wildmenu.
 set wildmode=full " Show all the possible outcomes.
 set nospell
+set ignorecase " Ignores case when searchin.
 set smartcase " Search using smartcase.
 set viewoptions=cursor,folds
 set nojoinspaces " Only one space after a period when joining lines.
-set hlsearch
 set incsearch
 set splitbelow
 set splitright
@@ -103,6 +103,9 @@ set statusline+=\ %p%%\ \|
 set statusline+=\ %{&filetype}\ \|
 set statusline+=\ %{&fileformat}\ \|
 set statusline+=\ %{&fileencoding}\ \|
+
+" Make cw behave like yw, dw, vw etc
+"onoremap w :execute 'normal! '.v:count1.'w'<CR>
 
 " We do not want any help. Not needed as <Esc> is now rebound to Caps.
 imap <F1> <ESC>
