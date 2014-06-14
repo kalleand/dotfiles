@@ -13,7 +13,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'taglist.vim'
-"NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
@@ -58,7 +57,7 @@ set nrformats= " Makes <C-a> and <C-x> work on numbers as 001.
 set noswapfile " Dont create swapfiles.
 set ts=4 sts=4 sw=4 " One tab is 4 spaces.
 set number " Shows linenumber.
-set mouse=a " Set mouse on always.
+set mouse=nv " Do not use mouse in insert mode.
 set expandtab " Use tabs instead of spaces.
 set matchpairs+=<:> " Matches inside tags as well.
 set scrolloff=3
@@ -164,10 +163,10 @@ nmap <leader>f :tabfirst<cr>
 nmap <leader>n :tabnew<cr>
 
 " Dont use the arrowkeys
-map <Up> <Nop>
-map <Down> <Nop>
-map <Left> <Nop>
-map <Right> <Nop>
+map <Up> <C-w>+
+map <Down> <C-w>-
+map <Left> <C-w><
+map <Right> <C-w>>
 
 "Split line
 nmap <leader>s i<cr><esc>
