@@ -1,5 +1,5 @@
 set gui=nonavigation
-set guioptions=Cs
+" set guioptions=Cs
 hi Bell                 border: 0 none; background-color: black;
 hi Boolean              color: #CC9393;
 hi CmdLine              color: #DCDCCD; font-family: terminus; padding: 1px;
