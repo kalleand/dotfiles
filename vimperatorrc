@@ -1,5 +1,8 @@
 set gui=nonavigation
 " set guioptions=Cs
+cnoremap <C-j> <CR>
+nnoremap <C-h> :back<CR>
+nnoremap <C-l> :forward<CR>
 hi Bell                 border: 0 none; background-color: black;
 hi Boolean              color: #CC9393;
 hi CmdLine              color: #DCDCCD; font-family: terminus; padding: 1px;

@@ -16,6 +16,7 @@ URxvt.saveLines:32767
 URxvt.scrollBar: false
 
 URxvt*font: xft:Terminus:pixelsize=9
+URxvt*modifier: alt
 
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: firefox

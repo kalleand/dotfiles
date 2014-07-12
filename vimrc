@@ -19,8 +19,6 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'kovisoft/slimv'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/vimproc.vim', {
         \   'build' : {
         \       'unix' : 'make -f make_unix.mak',
@@ -85,7 +83,7 @@ set textwidth=80 " breaks after 80'th column.
 set colorcolumn=80 " Shows the 80'th column.
 set showbreak=… " Show breaks by displaying this character first in the line.
 set wildmenu " Use wildmenu.
-set wildmode=full " Show all the possible outcomes.
+set wildmode=longest:full " Show all the possible outcomes.
 set nospell
 set ignorecase " Ignores case when searchin.
 set smartcase " Search using smartcase.
@@ -103,8 +101,8 @@ set statusline+=\ %{&filetype}\ \|
 set statusline+=\ %{&fileformat}\ \|
 set statusline+=\ %{&fileencoding}\ \|
 
-" Make cw behave like yw, dw, vw etc
-"onoremap w :execute 'normal! '.v:count1.'w'<CR>
+" Edit this file with :Vimrc
+command! Vimrc e ~/.vimrc
 
 " We do not want any help. Not needed as <Esc> is now rebound to Caps.
 imap <F1> <ESC>
@@ -145,9 +143,6 @@ set foldmethod=syntax
 " Folding look.
 "highlight Folded ctermfg=yellow ctermbg=black
 
-" Keeps search matches centered and unfold the current line.
-"nmap n nzzzv
-"nmap N Nzzzv
 highlight SignColumn ctermbg=black
 
 " Go to matching bracket.
@@ -172,24 +167,15 @@ map <Right> <C-w>>
 nmap <leader>s i<cr><esc>
 
 " Visual mode of entire line.
-nmap vv ^vg_
+nmap vv 0vg$
 
 " Taglist
 nmap <C-t> :TlistToggle<CR>
 let Tlist_Inc_Winwidth=0
 
-" Make views when closing and show view when open file.
-"au BufWritePost,BufLeave,WinLeave ?* mkview
-"au BufWinEnter ?* silent! loadview
-
 " Syntastic options.
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
-" Ultisnips options. (Why would you mess with <C-J>?)
-"let g:UltiSnipsExpandTrigger="ää"
-"let g:UltiSnipsJumpForwardTrigger="ää"
-"let g:UltisnipsJumpBackwardTrigger="ää"
 
 "let g:slimv_repl_split=4
 let g:slimv_ctags="/usr/bin/ctags -a --language-force=lisp *.lisp"
@@ -201,23 +187,29 @@ let g:calendar_google_task = 1
 " LatexBox
 "let g:LatexBox_latexmk_async = 1
 let g:LatexBox_latexmk_preview_continuously = 1
-let g:LatexBox_viewer = "mimeopen"
+let g:LatexBox_viewer = "xdg-open"
 " Automatically build the document.
 "au BufWinEnter *.tex silent! Latexmk
 
 " Prevent lagg from gitgutter
 let g:gitgutter_realtime = 0
 
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
+let g:EclimCompletionMethod = 'omnifunc'
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
-" Neosnippet
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
+" Eclim mappings
+autocmd FileType java call SetJavaMappings()
+
+function! SetJavaMappings()
+    nmap <leader>jf :JavaFormat<CR>
+    nmap <leader>jd :JavaDelegate<CR>
+    nmap <leader>jo :JavaImportOrganize<CR>
+    nmap <leader>ji :JavaImpl<CR>
+    nmap <leader>jg :JavaGet<CR>
+    nmap <leader>js :JavaSet<CR>
+    nmap <leader>jj :Java 
+    nmap <leader>ju :JUnit<CR>
+endfunction
