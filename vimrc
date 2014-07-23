@@ -204,7 +204,7 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 autocmd FileType java call SetJavaMappings()
 
 function! SetJavaMappings()
-    nmap <leader>jf :JavaFormat<CR>
+    nmap <leader>jf :%JavaFormat<CR>
     nmap <leader>jd :JavaDelegate<CR>
     nmap <leader>jo :JavaImportOrganize<CR>
     nmap <leader>ji :JavaImpl<CR>
@@ -212,4 +212,5 @@ function! SetJavaMappings()
     nmap <leader>js :JavaSet<CR>
     nmap <leader>jj :Java 
     nmap <leader>ju :JUnit<CR>
+    nmap <leader>jc :JavaCorrect<CR>
 endfunction
