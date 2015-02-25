@@ -12,10 +12,11 @@ Xft.hintstyle:  hintslight
 !URxvt.depth: 32
 !URxvt*background: #3a3a3a
 
-URxvt.saveLines:32767
+URxvt.saveLines: 32767
 URxvt.scrollBar: false
 
-URxvt*font: xft:Terminus:pixelsize=9
+!URxvt*font: xft:Terminus:pixelsize=9
+urxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
 URxvt*modifier: alt
 
 URxvt.perl-ext-common: default,matcher
@@ -70,24 +71,63 @@ URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 !xterm*color15: #FFFFFF
 
 ! Tango color palette.
-urxvt*foreground: #d0d0d0
-!urxvt*background: black
-urxvt*background: #121212
+!urxvt*foreground: #d0d0d0
+!urxvt*background: #121212
 
-*color0:  #2E3436
-*color1:  #a40000
-*color2:  #4E9A06
-*color3:  #C4A000
-*color4:  #3465A4
-*color5:  #75507B
-*color6:  #ce5c00
-*color7:  #babdb9
-*color8:  #555753
-*color9:  #EF2929
-*color10: #8AE234
-*color11: #FCE94F
-*color12: #729FCF
-*color13: #AD7FA8
-*color14: #fcaf3e
-!*color15: #EEEEEC
-URxvt*color15: #f0f0f0
+!*color0:  #2E3436
+!*color1:  #a40000
+!*color2:  #4E9A06
+!*color3:  #C4A000
+!*color4:  #3465A4
+!*color5:  #75507B
+!*color6:  #ce5c00
+!*color7:  #babdb9
+!*color8:  #555753
+!*color9:  #EF2929
+!*color10: #8AE234
+!*color11: #FCE94F
+!*color12: #729FCF
+!*color13: #AD7FA8
+!*color14: #fcaf3e
+!URxvt*color15: #f0f0f0
+
+!TomorrowNightEighties
+#define t_background #2d2d2d
+#define t_current_line #393939
+#define t_selection #515151
+#define t_foreground #cccccc
+#define t_comment #999999
+#define t_red #f2777a
+#define t_orange #f99157
+#define t_yellow #ffcc66
+#define t_green #99cc99
+#define t_aqua #66cccc
+#define t_blue #6699cc
+#define t_purple #cc99cc
+urxvt*foreground: #cccccc
+urxvt*background: #2d2d2d
+urxvt*cursorColor: #aeafad
+! Black / Grey
+urxvt*color0: #000000
+urxvt*color8: #666666
+! Red / Bright Red
+urxvt*color1: #f2777a
+urxvt*color9: #FF3334
+! Green + Bright Green
+urxvt*color2: #99cc99
+urxvt*color10: #9ec400
+! Yellow (Orange) + Bright Yellow (Yellow)
+urxvt*color3: #f99157
+urxvt*color11: #ffcc66
+! Blue + Bright Blue
+urxvt*color4: #6699cc
+urxvt*color12: #6699cc
+! Magenta (Purple) + Bright Magenta
+urxvt*color5: #cc99cc
+urxvt*color13: #b777e0
+! Cyan (Aqua) + Bright Cyan
+urxvt*color6: #66cccc
+urxvt*color14: #54ced6
+! Light Grey (Selection) + White (Current Line)
+urxvt*color7: #515151
+urxvt*color15: #393939

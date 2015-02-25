@@ -3,8 +3,7 @@ set nocompatible
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -17,7 +16,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'kovisoft/slimv'
+NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Shougo/vimproc.vim', {
         \   'build' : {
@@ -25,14 +24,14 @@ NeoBundle 'Shougo/vimproc.vim', {
         \   },
         \}
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'itchyny/calendar.vim'
-NeoBundle 'tomasr/molokai'
+NeoBundle 'mtth/scratch.vim'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'Pychimp/vim-luna'
+
+call neobundle#end()
 
 filetype plugin indent on
 
@@ -42,11 +41,12 @@ syntax enable
 set background=dark
 set laststatus=2 " Show own statusline with additional information.
 set encoding=utf-8
-set t_Co=256
+"set t_Co=256
 
-colorscheme molokai
-"let g:molokai_original = 1
-"let g:rehash256 = 1
+"colorscheme Tomorrow-Night-Eighties
+"colorscheme spacegray
+"colorscheme flatland
+colorscheme luna
 
 " To enable :E to default to Explore.
 command! E Explore
@@ -70,7 +70,7 @@ let maplocalleader = "\\"
 set timeoutlen=1000 ttimeoutlen=100
 
 set history=1000 " Remember 1000 moves.
-set cursorline " Display which line cursor is currently on.
+"set cursorline " Display which line cursor is currently on.
 set list " Show special characters.
 set listchars=tab:>\ ,trail:·" Display the tab as "> ".
 set hidden " Allow to move away from dirty buffer.
@@ -80,7 +80,7 @@ set smartindent " Smart indenting.
 set pastetoggle=<F3> "Toggle paste with <F3>.
 set title " Changes title to the buffer open.
 set textwidth=80 " breaks after 80'th column.
-set colorcolumn=80 " Shows the 80'th column.
+"set colorcolumn=80 " Shows the 80'th column.
 set showbreak=… " Show breaks by displaying this character first in the line.
 set wildmenu " Use wildmenu.
 set wildmode=longest:full " Show all the possible outcomes.
@@ -93,9 +93,10 @@ set incsearch
 set splitbelow
 set splitright
 
-set showmode " Show which mode is currently used. 
+set showmode " Show which mode is currently used.
 set statusline=\|%<\ %{mode()}\ \|
 set statusline+=\ %F%=\ %l:%c\ \|
+"set statusline+=\ %{noscrollbar#statusline()}
 set statusline+=\ %p%%\ \|
 set statusline+=\ %{&filetype}\ \|
 set statusline+=\ %{&fileformat}\ \|
@@ -123,7 +124,7 @@ cmap <C-p> <Up>
 cmap <C-d> <Down>
 
 " Toggles highlighting of a search.
-map <leader><space> :set hls!<CR>
+map <leader>n :set hls!<CR>
 
 " Clipboard yanking and pasting.
 nmap <leader>y "+y
@@ -157,14 +158,14 @@ nmap <leader>l :tablast<cr>
 nmap <leader>f :tabfirst<cr>
 nmap <leader>n :tabnew<cr>
 
+" Open scratch window
+nmap <leader><space> :Scratch<cr>
+
 " Dont use the arrowkeys
 map <Up> <C-w>+
 map <Down> <C-w>-
 map <Left> <C-w><
 map <Right> <C-w>>
-
-"Split line
-nmap <leader>s i<cr><esc>
 
 " Visual mode of entire line.
 nmap vv 0vg$
@@ -187,21 +188,29 @@ let g:calendar_google_task = 1
 " LatexBox
 "let g:LatexBox_latexmk_async = 1
 let g:LatexBox_latexmk_preview_continuously = 1
-let g:LatexBox_viewer = "xdg-open"
+let g:LatexBox_viewer = "evince"
 " Automatically build the document.
 "au BufWinEnter *.tex silent! Latexmk
 
 " Prevent lagg from gitgutter
 let g:gitgutter_realtime = 0
+let g:scratch_insert_autohide = 0
+"
+" YCM config
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_extra_conf_globlist = ['~/*']
 
-let g:EclimCompletionMethod = 'omnifunc'
+let g:UltiSnipsExpandTrigger = "<leader>s"
+let g:UltiSnipsJumpForwardTrigger = "<leader>s"
+let g:UltiSnipsJumpBackwardTrigger = "<leader>b"
 
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
+" Eclim config
+"let g:EclimCompletionMethod = 'omnifunc'
 
 " Eclim mappings
-autocmd FileType java call SetJavaMappings()
+"autocmd FileType java call SetJavaMappings()
 
 function! SetJavaMappings()
     nmap <leader>jf :%JavaFormat<CR>
@@ -210,7 +219,10 @@ function! SetJavaMappings()
     nmap <leader>ji :JavaImpl<CR>
     nmap <leader>jg :JavaGet<CR>
     nmap <leader>js :JavaSet<CR>
-    nmap <leader>jj :Java 
+    nmap <leader>jj :Java
     nmap <leader>ju :JUnit<CR>
     nmap <leader>jc :JavaCorrect<CR>
 endfunction
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1

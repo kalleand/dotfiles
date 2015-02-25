@@ -5,13 +5,13 @@
     excludesfile = /home/kaan/.gitignore_global
     editor = vim
 [color]
-	ui = true
+    ui = true
 [alias]
     lol = log --oneline --graph --decorate
     ignore = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 >> .gitignore
     ours = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-	ctags = !.git/hooks/ctags
+    ctags = !.git/hooks/ctags
 [credential]
     helper = cache --timeout=3600
 [merge]
@@ -19,6 +19,6 @@
 [push]
     default = current
 [help]
-	autocorrect = 30
-[init]
-	templatedir = ~/.git_template
+    autocorrect = 20
+;[init]
+    ;templatedir = ~/.git_template
