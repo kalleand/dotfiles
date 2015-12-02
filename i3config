@@ -113,12 +113,26 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# Set workspaces to external screen if existing
+workspace 10 output VGA1
+workspace 9 output VGA1
+workspace 8 output VGA1
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# lock screen
+bindsym $mod+Ctrl+l exec customi3lock.sh
+
+bindsym $mod+Mod1+h exec mpc prev
+bindsym $mod+Mod1+l exec mpc next
+bindsym $mod+Mod1+p exec mpc toggle
+
+# Auto back and forth
+workspace_auto_back_and_forth yes
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -149,17 +163,18 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command py3status
 }
 
 focus_follows_mouse no
 
 #new_window pixel 2
-exec_always --no-startup-id nm-applet
-exec_always --no-startup-id pulseaudio --start
-exec_always --no-startup-id parcellite
-exec_always --no-startup-id volumeicon
-exec_always --no-startup-id xfce4-power-manager
+exec --no-startup-id nm-applet
+exec --no-startup-id pulseaudio --start
+exec --no-startup-id parcellite
+exec --no-startup-id volumeicon
+exec --no-startup-id xfce4-power-manager
 
 #Use i3lock
-exec xss-lock -- i3lock
+#exec xss-lock -- i3lock
+exec xautolock -detectsleep -time 15 -locker "customi3lock.sh"

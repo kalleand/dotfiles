@@ -1,6 +1,6 @@
 [user]
     name = Karl Johan Andreasson
-    email = kalleand@kth.se
+    email = kalle.kaan@gmail.com
 [core]
     excludesfile = /home/kaan/.gitignore_global
     editor = vim
@@ -16,9 +16,14 @@
     helper = cache --timeout=3600
 [merge]
     tool = vimdiff
+    conflictStyle = diff3
 [push]
     default = current
 [help]
     autocorrect = 20
 ;[init]
     ;templatedir = ~/.git_template
+[branch]
+    autosetuprebase = always
+[rebase]
+    autoStash = true

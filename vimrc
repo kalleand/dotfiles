@@ -29,7 +29,9 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'Pychimp/vim-luna'
+NeoBundle 'shime/vim-livedown'
+NeoBundle 'kien/ctrlp.vim'
+
 
 call neobundle#end()
 
@@ -41,12 +43,7 @@ syntax enable
 set background=dark
 set laststatus=2 " Show own statusline with additional information.
 set encoding=utf-8
-"set t_Co=256
-
-"colorscheme Tomorrow-Night-Eighties
-"colorscheme spacegray
-"colorscheme flatland
-colorscheme luna
+set t_Co=256
 
 " To enable :E to default to Explore.
 command! E Explore
@@ -84,14 +81,16 @@ set textwidth=80 " breaks after 80'th column.
 set showbreak=… " Show breaks by displaying this character first in the line.
 set wildmenu " Use wildmenu.
 set wildmode=longest:full " Show all the possible outcomes.
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set nospell
 set ignorecase " Ignores case when searchin.
 set smartcase " Search using smartcase.
 set viewoptions=cursor,folds
 set nojoinspaces " Only one space after a period when joining lines.
 set incsearch
-set splitbelow
+"set splitbelow
 set splitright
+"set complete+=k
 
 set showmode " Show which mode is currently used.
 set statusline=\|%<\ %{mode()}\ \|
@@ -159,7 +158,7 @@ nmap <leader>f :tabfirst<cr>
 nmap <leader>n :tabnew<cr>
 
 " Open scratch window
-nmap <leader><space> :Scratch<cr>
+nmap <leader>S :Scratch<cr>
 
 " Dont use the arrowkeys
 map <Up> <C-w>+
@@ -170,6 +169,7 @@ map <Right> <C-w>>
 " Visual mode of entire line.
 nmap vv 0vg$
 
+nmap <leader><Space> :set hlsearch!<CR>
 " Taglist
 nmap <C-t> :TlistToggle<CR>
 let Tlist_Inc_Winwidth=0
@@ -226,3 +226,11 @@ endfunction
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+let g:ctrlp_map = '<leader>b'
+let g:ctrlp_cmd = 'CtrlP'
+
+let g:syntastic_mode_map = {
+            \ "mode": "active",
+            \ "active_filetypes": [],
+            \ "passive_filetypes": ["java"] }

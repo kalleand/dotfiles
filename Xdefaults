@@ -6,128 +6,55 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-! Zenburn urxvt
-!URxvt.foreground: #dcdccc
-
-!URxvt.depth: 32
-!URxvt*background: #3a3a3a
-
 URxvt.saveLines: 32767
 URxvt.scrollBar: false
 
-!URxvt*font: xft:Terminus:pixelsize=9
+! Font settings
 urxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+
 URxvt*modifier: alt
 
-URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: firefox
-URxvt.matcher.button: 2
+URxvt.perl-ext-common: default,matcher,terminal-contents,clipboard
+URxvt.keysym.C-0:   perl:clipboard:paste
+URxvt.urlLauncher: /usr/bin/firefox
+URxvt.matcher.button: 3
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
-!URxvt*colorUL: #c5f779
-!URxvt*underlineColor: #c5f779
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
 
-!URxvt*color0: #3f3f3f
-!URxvt*color1: #705050
-!URxvt*color2: #60b48a
-!URxvt*color3: #dfaf8f
-!URxvt*color4: #506070
-!URxvt*color5: #dc8cc3
-!URxvt*color6: #8cd0d3
-!URxvt*color7: #DCDCCC
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
 
-!URxvt*color8: #709080
-!URxvt*color9: #cc9393
-!URxvt*color10: #7f9f7f
-!URxvt*color11: #f0dfaf
-!URxvt*color12: #94bff3
-!URxvt*color13: #ec93d3
-!URxvt*color14: #93e0e3
-!URxvt*color15: #f0f0f0
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
 
-!black
-!xterm*color0: #3a3a3a
-!xterm*color8: #666666
-!red
-!xterm*color1: #AE4747
-!xterm*color9: #EE6363
-!green
-!xterm*color2: #556B2F
-!xterm*color10: #9ACD32
-!brown/yellow
-!xterm*color3: #DAA520
-!xterm*color11: #FFC125
-!blue
-!xterm*color4: #6F99B4
-!xterm*color12: #7C96B0
-!magenta
-!xterm*color5: #8B7B8B
-!xterm*color13: #D8BFD8
-!cyan
-!xterm*color6: #A7A15E
-!xterm*color14: #F0E68C
-!white
-!xterm*color7: #DDDDDD
-!xterm*color15: #FFFFFF
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
 
-! Tango color palette.
-!urxvt*foreground: #d0d0d0
-!urxvt*background: #121212
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
 
-!*color0:  #2E3436
-!*color1:  #a40000
-!*color2:  #4E9A06
-!*color3:  #C4A000
-!*color4:  #3465A4
-!*color5:  #75507B
-!*color6:  #ce5c00
-!*color7:  #babdb9
-!*color8:  #555753
-!*color9:  #EF2929
-!*color10: #8AE234
-!*color11: #FCE94F
-!*color12: #729FCF
-!*color13: #AD7FA8
-!*color14: #fcaf3e
-!URxvt*color15: #f0f0f0
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
 
-!TomorrowNightEighties
-#define t_background #2d2d2d
-#define t_current_line #393939
-#define t_selection #515151
-#define t_foreground #cccccc
-#define t_comment #999999
-#define t_red #f2777a
-#define t_orange #f99157
-#define t_yellow #ffcc66
-#define t_green #99cc99
-#define t_aqua #66cccc
-#define t_blue #6699cc
-#define t_purple #cc99cc
-urxvt*foreground: #cccccc
-urxvt*background: #2d2d2d
-urxvt*cursorColor: #aeafad
-! Black / Grey
-urxvt*color0: #000000
-urxvt*color8: #666666
-! Red / Bright Red
-urxvt*color1: #f2777a
-urxvt*color9: #FF3334
-! Green + Bright Green
-urxvt*color2: #99cc99
-urxvt*color10: #9ec400
-! Yellow (Orange) + Bright Yellow (Yellow)
-urxvt*color3: #f99157
-urxvt*color11: #ffcc66
-! Blue + Bright Blue
-urxvt*color4: #6699cc
-urxvt*color12: #6699cc
-! Magenta (Purple) + Bright Magenta
-urxvt*color5: #cc99cc
-urxvt*color13: #b777e0
-! Cyan (Aqua) + Bright Cyan
-urxvt*color6: #66cccc
-urxvt*color14: #54ced6
-! Light Grey (Selection) + White (Current Line)
-urxvt*color7: #515151
-urxvt*color15: #393939
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6

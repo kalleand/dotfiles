@@ -18,6 +18,8 @@ alias h="history|grep "
 alias f="find . |grep "
 alias p="ps aux |grep "
 
+alias lock="customi3lock.sh"
+
 #Firefox addon sdk enabling alias.
 alias addon-sdk="cd /opt/addon-sdk && source bin/activate; cd -"
 
@@ -27,7 +29,10 @@ zstyle ':completion:*' menu select
 export EDITOR=vim
 export BROWSER=firefox
 
-PATH=~/other/packer:~/other/xcape:$PATH
+PATH=~/other/:~/other/locking:$PATH
+
+# Add ruby gems to path
+PATH=~/.gem/ruby/2.2.0/bin:$PATH
 
 PROMPT='
   %n at %~
@@ -78,4 +83,72 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Syntax highlighting from AUR
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Complete with any word from visible part of the terminal
+_crazy_last_words() {
+    local expl
+    local -a screencontents
+
+    if [[ $OSTYPE == cygwin || $OSTYPE == linux* ]]; then
+        printf "\033]777;terminal-contents;\007"
+    fi
+
+    screencontents=($(terminalcontents))
+
+    # Split on quote, split on pipe symbol, split on whitespace, remove trailing '='
+    screencontents=( ${${=${(s'|')${(s'"')screencontents}}}%=} )
+
+    if [[ -z $words[CURRENT] ]]; then
+        # With no filter we only want to match url:s
+        screencontents=(${(M)screencontents:#(http|https|file)://[^ \"\']##})
+        if (( $CURRENT == 1 )); then
+            # If on start of line copy most recent match to clipboard
+            (( ${#screencontents} > 0 )) && echo "$screencontents[-1]"
+            return
+        fi
+    fi
+
+    # Reverse the list. We want most recent matches to be offered first.
+    screencontents=( ${(Oa)screencontents} )
+
+    _wanted values expl 'words from the terminal' compadd -aQ screencontents
+}
+
+zle -C crazy-last-words menu-complete _generic
+bindkey '^X^X' crazy-last-words
+
+zstyle ':completion:crazy-last-words:*' completer _crazy_last_words
+zstyle ':completion:crazy-last-words:*' ignore-line current
+zstyle ':completion:crazy-last-words:*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
+zstyle ':completion:crazy-last-words:*' sort false
+
+# ... => ../..
+rationalize-dot(){
+ if [[ $LBUFFER = *.. ]]; then
+  LBUFFER+=/..
+ else
+  LBUFFER+=.
+ fi
+}
+zle -N rationalize-dot
+bindkey . rationalize-dot
+
+# Empy command means ls
+auto-ls () {
+    if [[ "$#BUFFER" -eq 0 ]]; then
+        echo ""
+        ls
+        zle redisplay
+    else
+        zle .$WIDGET
+    fi
+}
+#zle -N accept-line auto-ls
+#zle -N other-widget auto-ls
+
+# Enables editing of command in editor (similar to bash vi-mode)
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+source /usr/share/nvm/init-nvm.sh
