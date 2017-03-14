@@ -10,7 +10,8 @@ URxvt.saveLines: 32767
 URxvt.scrollBar: false
 
 ! Font settings
-urxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
+!urxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
+urxvt*font: xft:Terminus (TTF):pixelsize=12
 URxvt.keysym.C-Up:     font-size:increase
 URxvt.keysym.C-Down:   font-size:decrease
 
@@ -23,38 +24,75 @@ URxvt.matcher.button: 3
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
 ! special
-*.foreground:   #c5c8c6
-*.background:   #1d1f21
-*.cursorColor:  #c5c8c6
+!*.foreground:   #c5c8c6
+!*.background:   #1d1f21
+!*.cursorColor:  #c5c8c6
 
 ! black
-*.color0:       #282a2e
-*.color8:       #373b41
+!*.color0:       #282a2e
+!*.color8:       #373b41
 
 ! red
-*.color1:       #a54242
-*.color9:       #cc6666
+!*.color1:       #a54242
+!*.color9:       #cc6666
 
 ! green
-*.color2:       #8c9440
-*.color10:      #b5bd68
+!*.color2:       #8c9440
+!*.color10:      #b5bd68
 
 ! yellow
-*.color3:       #de935f
-*.color11:      #f0c674
+!*.color3:       #de935f
+!*.color11:      #f0c674
 
 ! blue
-*.color4:       #5f819d
-*.color12:      #81a2be
+!*.color4:       #5f819d
+!*.color12:      #81a2be
 
 ! magenta
-*.color5:       #85678f
-*.color13:      #b294bb
+!*.color5:       #85678f
+!*.color13:      #b294bb
 
 ! cyan
-*.color6:       #5e8d87
-*.color14:      #8abeb7
+!*.color6:       #5e8d87
+!*.color14:      #8abeb7
 
 ! white
-*.color7:       #707880
-*.color15:      #c5c8c6
+!*.color7:       #707880
+!*.color15:      #c5c8c6
+
+! special
+*.foreground:   #dddddd
+*.background:   #242424
+*.cursorColor:  #dddddd
+
+! black
+*.color0:       #242424
+*.color8:       #777777
+
+! red
+*.color1:       #cb4a05
+*.color9:       #cb4a05
+
+! green
+*.color2:       #9e744d
+*.color10:      #9e744d
+
+! yellow
+*.color3:       #fed8a0
+*.color11:      #fed8a0
+
+! blue
+*.color4:       #4e7574
+*.color12:      #4e7574
+
+! magenta
+*.color5:       #ffffd8
+*.color13:      #ffffd8
+
+! cyan
+*.color6:       #fd9e74
+*.color14:      #fd9e74
+
+! white
+*.color7:       #dddddd
+*.color15:      #dddddd

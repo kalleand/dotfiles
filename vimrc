@@ -31,6 +31,8 @@ NeoBundle 'mtth/scratch.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'shime/vim-livedown'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'alessandroyorba/despacio'
 
 
 call neobundle#end()
@@ -45,6 +47,8 @@ set laststatus=2 " Show own statusline with additional information.
 set encoding=utf-8
 set t_Co=256
 
+colorscheme despacio
+
 " To enable :E to default to Explore.
 command! E Explore
 
@@ -57,6 +61,7 @@ set expandtab " Use tabs instead of spaces.
 set matchpairs+=<:> " Matches inside tags as well.
 set scrolloff=3
 set sidescrolloff=5
+set lazyredraw
 
 " Remap leader and localleader.
 let mapleader = ","
@@ -76,7 +81,7 @@ set autoindent " Automatically indent when a new line
 set smartindent " Smart indenting.
 set pastetoggle=<F3> "Toggle paste with <F3>.
 set title " Changes title to the buffer open.
-set textwidth=80 " breaks after 80'th column.
+set textwidth=0 " no brakes!
 "set colorcolumn=80 " Shows the 80'th column.
 set showbreak=… " Show breaks by displaying this character first in the line.
 set wildmenu " Use wildmenu.
@@ -224,6 +229,18 @@ function! SetJavaMappings()
     nmap <leader>jc :JavaCorrect<CR>
 endfunction
 
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -234,3 +251,68 @@ let g:syntastic_mode_map = {
             \ "mode": "active",
             \ "active_filetypes": [],
             \ "passive_filetypes": ["java"] }
+" XML formatter
+function! DoFormatXML() range
+    " Save the file type
+    let l:origft = &ft
+
+    " Clean the file type
+    set ft=
+
+    " Add fake initial tag (so we can process multiple top-level elements)
+    exe ":let l:beforeFirstLine=" . a:firstline . "-1"
+    if l:beforeFirstLine < 0
+        let l:beforeFirstLine=0
+    endif
+    exe a:lastline . "put ='</PrettyXML>'"
+    exe l:beforeFirstLine . "put ='<PrettyXML>'"
+    exe ":let l:newLastLine=" . a:lastline . "+2"
+    if l:newLastLine > line('$')
+        let l:newLastLine=line('$')
+    endif
+
+    " Remove XML header
+    exe ":" . a:firstline . "," . a:lastline . "s/<\?xml\\_.*\?>\\_s*//e"
+
+    " Recalculate last line of the edited code
+    let l:newLastLine=search('</PrettyXML>')
+
+    " Execute external formatter
+    exe ":silent " . a:firstline . "," . l:newLastLine . "!xmllint --noblanks --format --recover -"
+
+    " Recalculate first and last lines of the edited code
+    let l:newFirstLine=search('<PrettyXML>')
+    let l:newLastLine=search('</PrettyXML>')
+
+    " Get inner range
+    let l:innerFirstLine=l:newFirstLine+1
+    let l:innerLastLine=l:newLastLine-1
+
+    " Remove extra unnecessary indentation
+    exe ":silent " . l:innerFirstLine . "," . l:innerLastLine "s/^  //e"
+
+    " Remove fake tag
+    exe l:newLastLine . "d"
+    exe l:newFirstLine . "d"
+
+    " Put the cursor at the first line of the edited code
+    exe ":" . l:newFirstLine
+
+    " Restore the file type
+    exe "set ft=" . l:origft
+endfunction
+command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
+
+nmap <silent> <leader>x :%FormatXML<CR>
+vmap <silent> <leader>x :FormatXML<CR>
+
+" JsBeautify mapping
+autocmd FileType javascript noremap <buffer>  <leader>j :call JsBeautify()<cr>
+" for json
+autocmd FileType json noremap <buffer> <leader>j :call JsonBeautify()<cr>
+" for jsx
+autocmd FileType jsx noremap <buffer> <leader>j :call JsxBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <leader>j :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <leader>j :call CSSBeautify()<cr>

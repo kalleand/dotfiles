@@ -1,7 +1,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory autocd extendedglob notify
+setopt appendhistory autocd extendedglob notify promptsubst
 bindkey -v
 
 alias ll='ls -alhF'
@@ -20,6 +20,9 @@ alias p="ps aux |grep "
 
 alias lock="customi3lock.sh"
 
+## This circumvents xargs screwing with stdin
+alias xargs-vim="xargs bash -c '</dev/tty vim "\$\@"' ignoreme"
+
 #Firefox addon sdk enabling alias.
 alias addon-sdk="cd /opt/addon-sdk && source bin/activate; cd -"
 
@@ -28,15 +31,12 @@ zstyle ':completion:*' list-colors "di=34;1:ln=33;1:so=35;1:pi=33;1:ex=32;1:bd=3
 zstyle ':completion:*' menu select
 export EDITOR=vim
 export BROWSER=firefox
+export JAVA_HOME=/usr/lib/jvm/default
 
-PATH=~/other/:~/other/locking:$PATH
+PATH=~/other/:~/other/locking:~/other/idea-IU-163.7743.44/bin:$PATH
 
 # Add ruby gems to path
 PATH=~/.gem/ruby/2.2.0/bin:$PATH
-
-PROMPT='
-  %n at %~
-%(?..[%?])> '
 
 # To make dirstack work
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"
@@ -91,9 +91,7 @@ _crazy_last_words() {
     local expl
     local -a screencontents
 
-    if [[ $OSTYPE == cygwin || $OSTYPE == linux* ]]; then
-        printf "\033]777;terminal-contents;\007"
-    fi
+    printf "\033]777;terminal-contents;\007"
 
     screencontents=($(terminalcontents))
 
@@ -148,7 +146,147 @@ auto-ls () {
 #zle -N accept-line auto-ls
 #zle -N other-widget auto-ls
 
+zmodload zsh/datetime
+
+float etime_b_timestamp=$EPOCHREALTIME
+float etime_e_timestamp=$EPOCHREALTIME
+integer last_cmd=0
+integer last_seen=0
+integer display_time=0
+
+etime_begin() {
+    etime_b_timestamp=$EPOCHREALTIME
+    last_cmd=$last_cmd+1
+}
+
+etime_end() {
+    if (( last_cmd > last_seen )); then
+        last_seen=last_cmd
+        display_time=1
+    else
+        display_time=0
+    fi
+    etime_e_timestamp=$EPOCHREALTIME
+}
+
+add-zsh-hook preexec etime_begin
+add-zsh-hook precmd etime_end
+
+etime_time() {
+    if (( display_time == 0 )); then
+        return
+    fi
+    integer hours minutes
+    float rtime=$(( etime_e_timestamp - etime_b_timestamp ))
+
+    hours=$(( rtime / 3600 ))
+    rtime=$(( rtime - hours * 3600 ))
+
+    minutes=$(( rtime / 60 ))
+    rtime=$(( rtime - minutes * 60 ))
+
+    if (( hours == 0 && minutes == 0 && rtime < 0.2 )); then
+        printf ""
+    elif (( hours > 0 )); then
+        printf "%d:%02d:%02.0f" $hours $minutes $rtime
+    else
+        printf "%02d:%02.1f" $minutes $rtime
+    fi
+}
+
+autoload -Uz colors && colors
+PROMPT="
+  %n at %~
+%(?..[%?])> "
+RPROMPT="\$(etime_time)"
+
 # Enables editing of command in editor (similar to bash vi-mode)
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
-source /usr/share/nvm/init-nvm.sh
+#source /usr/share/nvm/init-nvm.sh
+
+# Give alias to directories
+# Use: "cd ~jobb"
+hash -d jobb=/home/kaan/r2m/inera/
+hash -d work=/home/kaan/r2m/inera/
+
+source ~/other/rg/rgf
+
+RG_EXCLUDES=(build target node node_modules bower_components \
+                   '.idea' '.settings' '.git' '.svn' '.gradle' '*min.js' '*min.css' '*js.map' '*css.map')
+
+alias rG='noglob rgf -f ${=${(j: -f :)RG_EXCLUDES}}'
+alias rg='rG -i'
+
+declare -a lastoutput
+
+# Offer alternatives from the result of the previous command. Depending on what the command currently on the
+# command line is, there's three alternatives:
+# 1) If the command is one of the editing commands ("ee", "ii" or "vv"), and the current position is the
+#    third word, then offer line numbers from the output of the latest invocation of rg/rG (stored in the
+#    global array "lastoutput"), matching the file name currently in the second position. I.e., if rg found
+#    a match in "file1" on lines 23 and 30, and the command line is currently "ii file1", then hitting alt-e
+#    suggests 23 or 30.
+# 2) If the last command was rg/rG (and we're at position 2), then alternatives are offered from the list of
+#    matching files.
+# 3) If the last command was NOT rg/rG, the last command is re-run, and the output from this command is
+#    offered as completion.
+#
+# The alternatives can be further filtered by writing some file-name fragment before pressing alt-e. In this case, 
+# only the alternatives matching what's given as a filter is offered. The match can be anywhere within the
+# file name, and matches case-insensitively.
+_previous-result() {
+    setopt LOCAL_OPTIONS EXTENDED_GLOB
+    local -a hlist
+    local lastcommand="$(fc -l -n -1)" # Find out what the last command was.
+
+    if [[ $words[1] =~ "^(ee|ii|vv)$" ]] && (( CURRENT >= 3 )); then
+        hlist=(${${(M)lastoutput:##$words[2]*}//(#b)*:([0-9]##):*/${match[1]}}) # Matching line numbers.
+    elif [[ $lastcommand =~ "^(rg|rG|rgf) .*$" ]]; then
+        hlist=(${(u)${lastoutput%%:*}}) # Keep file names, make unique.
+    else
+        hlist=("${(@f)$(eval "$lastcommand")//$'\e'\[[0-9;]#[mK]/}") # Run last command again. Remove color.
+    fi
+
+    compadd -n -V previous_result -M 'l:|=* m:{[:lower:]}={[:upper:]}' -- $hlist
+}
+
+# Cycle forward in list of matches.
+zle -C previous-comp menu-complete _previous-result
+bindkey '\ee' previous-comp
+
+# Cycle backward in list of matches.
+zle -C rev-previous-comp reverse-menu-complete _previous-result
+bindkey '\eE' rev-previous-comp
+
+zstyle ':completion:*previous-comp:*:*' menu no
+
+# Edit given file with vim.
+vv() {
+    local numline
+    [[ -n $2 ]] && numline=+$2
+
+    vim $numline "$1"
+}
+
+PATH="/home/kaan/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/kaan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/kaan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/kaan/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/kaan/perl5"; export PERL_MM_OPT;
+
+ffjar() {
+    find . -iname "*.jar" | parallel --tag zipinfo -1 {} 2>/dev/null | \
+    ag --color --color-match 31 --nomultiline "$1(?=[^\t]*$)" | \
+    awk '{ printf("\x1B[35m%s\x1B[00m:%s\n", $1, $2) }'
+}
+
+ii() {
+    local numline
+    [[ -n $2 ]] && numline=:$2
+
+    (idea.sh "$1$numline" &)
+
+    # If on Mac, uncomment this to immediately switch to IDEA
+    # osascript -e 'activate application "IntelliJ IDEA.app"'
+}
