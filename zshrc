@@ -18,7 +18,12 @@ alias h="history|grep "
 alias f="find . |grep "
 alias p="ps aux |grep "
 
+alias vim="nvim"
+
 alias lock="customi3lock.sh"
+
+# Default to rich console for gradle
+alias gradle="gradle --console rich"
 
 ## This circumvents xargs screwing with stdin
 alias xargs-vim="xargs bash -c '</dev/tty vim "\$\@"' ignoreme"
@@ -26,14 +31,20 @@ alias xargs-vim="xargs bash -c '</dev/tty vim "\$\@"' ignoreme"
 #Firefox addon sdk enabling alias.
 alias addon-sdk="cd /opt/addon-sdk && source bin/activate; cd -"
 
+#alias basefarm-vpn="sudo openconnect -u areasson https://ssl-vpn.sth.basefarm.net/ssl"
+alias basefarm-vpn="sudo openconnect -u areasson --servercert sha256:ff428dd4e5923c7d3149e893c31acc428ace4cb3ba82d6cace3dff3bf8e69db8 --no-dtls https://ssl-vpn.sth.basefarm.net/ssl"
+alias buildSrs="./gradlew clean build && R_HOME=/lib/R java -Djava.library.path=\"/lib/R/library/rJava/jri\" -Dsrs.resources.folder=\"/home/kaan/r2m/inera/srs/src/main/resources\" -jar build/libs/*.war --spring.profiles.active=runtime,it,bootstrap"
+
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.(o|out|pdf|jpg|so|png|class|toc|log|)'
 zstyle ':completion:*' list-colors "di=34;1:ln=33;1:so=35;1:pi=33;1:ex=32;1:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
 zstyle ':completion:*' menu select
+
 export EDITOR=vim
 export BROWSER=firefox
 export JAVA_HOME=/usr/lib/jvm/default
+export TERM='xterm-256color'
 
-PATH=~/other/:~/other/locking:~/other/idea-IU-163.7743.44/bin:$PATH
+PATH=~/other/:~/other/locking:~/other/idea-IU-173.3727.127/bin:$PATH
 
 # Add ruby gems to path
 PATH=~/.gem/ruby/2.2.0/bin:$PATH
@@ -263,12 +274,32 @@ zstyle ':completion:*previous-comp:*:*' menu no
 
 # Edit given file with vim.
 vv() {
-    local numline
-    [[ -n $2 ]] && numline=+$2
-
-    vim $numline "$1"
+    local filename line
+    if [[ $1 =~ : ]]; then
+        local -a args=(${(s':')1})
+        filename="$args[1]"
+        line=$args[2]
+    else
+        filename="$1"
+        line=${2:-0}
+    fi
+    vim +$line "$filename"
 }
-
+# Edit given file in idea
+ii() {
+    local filename line
+    if [[ $1 =~ : ]]; then
+        local -a args=(${(s':')1})
+        filename="$args[1]"
+        line=$args[2]
+    else
+        filename="$1"
+        line=${2:-0}
+    fi
+    (/home/kaan/other/idea/bin/idea.sh --line $line "$filename" &> /dev/null &)
+    [[ $OSTYPE == darwin* ]] && activateApp "IntelliJ IDEA.app" 2>/dev/null
+    return 0
+}
 PATH="/home/kaan/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kaan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/kaan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
@@ -281,12 +312,13 @@ ffjar() {
     awk '{ printf("\x1B[35m%s\x1B[00m:%s\n", $1, $2) }'
 }
 
-ii() {
-    local numline
-    [[ -n $2 ]] && numline=:$2
+# Complete with most recently touched file or directory
+zstyle ':completion:my-most-recent-*:*' match-original both
+zstyle ':completion:my-most-recent-*:*' completer menu files _match
+zstyle ':completion:my-most-recent-*:*' file-sort modification
+zstyle ':completion:my-most-recent-*:*' hidden all
 
-    (idea.sh "$1$numline" &)
-
-    # If on Mac, uncomment this to immediately switch to IDEA
-    # osascript -e 'activate application "IntelliJ IDEA.app"'
-}
+# Most recent file
+zstyle ':completion:my-most-recent-file:*' file-patterns '*(.):normal\ files'
+zle -C my-most-recent-file menu-complete _generic
+bindkey '^O' my-most-recent-file

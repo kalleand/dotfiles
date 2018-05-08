@@ -12,53 +12,28 @@ URxvt.scrollBar: false
 ! Font settings
 !urxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
 urxvt*font: xft:Terminus (TTF):pixelsize=12
-URxvt.keysym.C-Up:     font-size:increase
-URxvt.keysym.C-Down:   font-size:decrease
 
 URxvt*modifier: alt
 
-URxvt.perl-ext-common: default,matcher,terminal-contents,clipboard
-URxvt.keysym.C-0:   perl:clipboard:paste
-URxvt.urlLauncher: /usr/bin/firefox
-URxvt.matcher.button: 3
-URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.perl-ext-common:      default,terminal-contents,clipboard,url-select,resize-font
+URxvt.keysym.C-0:           perl:clipboard:paste
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.url-select.launcher:  /usr/bin/xdg-open
+URxvt.url-select.underline: true
+URxvt.keysym.C-Up:          resize-font:bigger
+URxvt.keysym.C-Down:        resize-font:smaller
 
-! special
-!*.foreground:   #c5c8c6
-!*.background:   #1d1f21
-!*.cursorColor:  #c5c8c6
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
-! black
-!*.color0:       #282a2e
-!*.color8:       #373b41
+! do not scroll with output
+URxvt*scrollTtyOutput: false
 
-! red
-!*.color1:       #a54242
-!*.color9:       #cc6666
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
 
-! green
-!*.color2:       #8c9440
-!*.color10:      #b5bd68
-
-! yellow
-!*.color3:       #de935f
-!*.color11:      #f0c674
-
-! blue
-!*.color4:       #5f819d
-!*.color12:      #81a2be
-
-! magenta
-!*.color5:       #85678f
-!*.color13:      #b294bb
-
-! cyan
-!*.color6:       #5e8d87
-!*.color14:      #8abeb7
-
-! white
-!*.color7:       #707880
-!*.color15:      #c5c8c6
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
 
 ! special
 *.foreground:   #dddddd

@@ -114,9 +114,9 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # Set workspaces to external screen if existing
-workspace 10 output VGA1
-workspace 9 output VGA1
-workspace 8 output VGA1
+workspace 10 output VGA-1
+workspace 9 output VGA-1
+workspace 8 output VGA-1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -177,6 +177,7 @@ bar {
 focus_follows_mouse no
 
 #new_window pixel 2
+exec --no-startup-id compton
 exec --no-startup-id nm-applet
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id parcellite

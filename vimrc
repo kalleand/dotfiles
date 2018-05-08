@@ -1,52 +1,24 @@
 set nocompatible
 
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-call neobundle#begin(expand('~/.vim/bundle/'))
+call plug#begin('~/.vim/plugged')
 
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'alessandroyorba/despacio'
+Plug 'bling/vim-airline'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
-" Plugins.
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'taglist.vim'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'https://bitbucket.org/kovisoft/slimv'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'Shougo/vimproc.vim', {
-        \   'build' : {
-        \       'unix' : 'make -f make_unix.mak',
-        \   },
-        \}
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'tommcdo/vim-exchange'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-NeoBundle 'mtth/scratch.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'shime/vim-livedown'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'maksimr/vim-jsbeautify'
-NeoBundle 'alessandroyorba/despacio'
-
-
-call neobundle#end()
+call plug#end()
 
 filetype plugin indent on
 
-NeoBundleCheck
-
 syntax enable
-set background=dark
 set laststatus=2 " Show own statusline with additional information.
 set encoding=utf-8
 set t_Co=256
 
+"colorscheme challenger_deep
 colorscheme despacio
 
 " To enable :E to default to Explore.
@@ -82,7 +54,6 @@ set smartindent " Smart indenting.
 set pastetoggle=<F3> "Toggle paste with <F3>.
 set title " Changes title to the buffer open.
 set textwidth=0 " no brakes!
-"set colorcolumn=80 " Shows the 80'th column.
 set showbreak=… " Show breaks by displaying this character first in the line.
 set wildmenu " Use wildmenu.
 set wildmode=longest:full " Show all the possible outcomes.
@@ -127,9 +98,6 @@ nmap Q <Nop>
 cmap <C-p> <Up>
 cmap <C-d> <Down>
 
-" Toggles highlighting of a search.
-map <leader>n :set hls!<CR>
-
 " Clipboard yanking and pasting.
 nmap <leader>y "+y
 vmap <leader>y "+y
@@ -148,16 +116,12 @@ set foldmethod=syntax
 " Folding look.
 "highlight Folded ctermfg=yellow ctermbg=black
 
-highlight SignColumn ctermbg=black
-
-" Go to matching bracket.
-nmap <leader>m %
+"highlight SignColumn ctermbg=black
 
 " Remove trailing spaces.
 map <silent> <leader>w :let _s=@/<cr>:%s/\s\+$//e<cr>:let @/=_s<cr>
 
 " tabs
-"nmap <leader>t :tabnext<cr> " use gt / gT instead.
 nmap <leader>l :tablast<cr>
 nmap <leader>f :tabfirst<cr>
 nmap <leader>n :tabnew<cr>
@@ -175,6 +139,7 @@ map <Right> <C-w>>
 nmap vv 0vg$
 
 nmap <leader><Space> :set hlsearch!<CR>
+
 " Taglist
 nmap <C-t> :TlistToggle<CR>
 let Tlist_Inc_Winwidth=0
@@ -186,48 +151,8 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 "let g:slimv_repl_split=4
 let g:slimv_ctags="/usr/bin/ctags -a --language-force=lisp *.lisp"
 
-" Calendar settings.
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
-
-" LatexBox
-"let g:LatexBox_latexmk_async = 1
-let g:LatexBox_latexmk_preview_continuously = 1
-let g:LatexBox_viewer = "evince"
-" Automatically build the document.
-"au BufWinEnter *.tex silent! Latexmk
-
 " Prevent lagg from gitgutter
 let g:gitgutter_realtime = 0
-let g:scratch_insert_autohide = 0
-"
-" YCM config
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_extra_conf_globlist = ['~/*']
-
-let g:UltiSnipsExpandTrigger = "<leader>s"
-let g:UltiSnipsJumpForwardTrigger = "<leader>s"
-let g:UltiSnipsJumpBackwardTrigger = "<leader>b"
-
-" Eclim config
-"let g:EclimCompletionMethod = 'omnifunc'
-
-" Eclim mappings
-"autocmd FileType java call SetJavaMappings()
-
-function! SetJavaMappings()
-    nmap <leader>jf :%JavaFormat<CR>
-    nmap <leader>jd :JavaDelegate<CR>
-    nmap <leader>jo :JavaImportOrganize<CR>
-    nmap <leader>ji :JavaImpl<CR>
-    nmap <leader>jg :JavaGet<CR>
-    nmap <leader>js :JavaSet<CR>
-    nmap <leader>jj :Java
-    nmap <leader>ju :JUnit<CR>
-    nmap <leader>jc :JavaCorrect<CR>
-endfunction
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
@@ -244,13 +169,6 @@ vnoremap <silent> # :<C-U>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-let g:ctrlp_map = '<leader>b'
-let g:ctrlp_cmd = 'CtrlP'
-
-let g:syntastic_mode_map = {
-            \ "mode": "active",
-            \ "active_filetypes": [],
-            \ "passive_filetypes": ["java"] }
 " XML formatter
 function! DoFormatXML() range
     " Save the file type
@@ -316,3 +234,8 @@ autocmd FileType jsx noremap <buffer> <leader>j :call JsxBeautify()<cr>
 autocmd FileType html noremap <buffer> <leader>j :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <leader>j :call CSSBeautify()<cr>
+
+nnoremap t. :tabedit %<cr>
+nnoremap tc :tabclose<cr>
+
+let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
